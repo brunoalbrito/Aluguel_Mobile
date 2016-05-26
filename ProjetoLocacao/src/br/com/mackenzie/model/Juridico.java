@@ -17,4 +17,12 @@ package br.com.mackenzie.model;
 public class Juridico extends Cliente {
 	private int CNPJ;
 	private String nomeFantasia;
+
+    public Juridico(String nomeFantasia, int CNPJ, String endereco, int telefone) {
+        super(endereco, telefone);
+        this.CNPJ = CNPJ;
+        this.nomeFantasia = nomeFantasia;
+    }
+        
+        
 }

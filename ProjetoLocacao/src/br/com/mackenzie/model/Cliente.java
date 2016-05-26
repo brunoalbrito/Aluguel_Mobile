@@ -17,9 +17,26 @@ package br.com.mackenzie.model;
 public abstract class Cliente {
 	protected String endereco;
 	protected int telefone;
+        
+        public Cliente(String endereco, int telefone){
+            
+            this.endereco = endereco;
+            this.telefone = telefone;
+            
+        }
+        
+        
 	public void consultaCliente() {
+            
+            
+            
 	}
 	
 	public void cadastrarCliente() {
+            
+            
+            
 	}
+        
+        
 }

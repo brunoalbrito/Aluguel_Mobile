@@ -27,6 +27,4 @@ public abstract class Cliente {
     public int getTelefone() {
         return telefone;
     }
-        
-        
 }

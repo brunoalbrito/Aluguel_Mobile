@@ -27,8 +27,5 @@ public class Juridico extends Cliente {
 
     public String getNomeFantasia() {
         return nomeFantasia;
-    }
-      
-    
-        
+    }        
 }

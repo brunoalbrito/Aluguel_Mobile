@@ -9,16 +9,16 @@ package br.com.mackenzie.model;
  *
  * @author Bruno
  */
-public enum SO {
-    ANDROID(1),MAC(2),NAOINFORMADO(3);
+public enum StatusProduto {
+    DISPONIVEL(1),ALUGADO(2);
     
     private final int valor;
-    
-    SO(int valorStatus){
-        valor = valorStatus;
+
+    private StatusProduto(int valor) {
+        this.valor = valor;
     }
-    
-    public int getSO(){
+    public int getStatus(){
         return valor;
     }
+    
 }

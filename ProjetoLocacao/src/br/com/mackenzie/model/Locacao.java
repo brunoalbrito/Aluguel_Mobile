@@ -9,14 +9,74 @@ import java.util.Date;
 //  @ Date : 23/05/2016
 //  @ Author : 
 //
+
 public class Locacao {
-	private Date dataRetirada;
-	private Date dataPrevista;
-	private Date dataDevolucao;
-	private double precoTotal;
-	private double valorMulta;	
-	
-	public void calcularJuros() {}
-	
-	public void gerarValorPagar() {}
+
+    private Date dataRetirada;
+    private Date dataPrevista;
+    private Date dataDevolucao;
+    private double precoTotal;
+    private double valorMulta;
+    private Cliente cliente;
+    private Produto produto;
+
+    public Locacao(Cliente cliente, Produto produto, Date dataRetirada, Date dataPrevista) {
+        //construtor nao inicializa data de devolução, pois essa é cadastrada na devolução
+        this.cliente = cliente;
+        this.produto = produto;
+        valorMulta = 1.5;
+        this.dataRetirada = dataRetirada;
+        this.dataPrevista = dataPrevista;
+
+    }
+
+    public double calcularJuros() {
+        //calculo de juros, pega a diferença de dias e multiplica pelo valor da multa
+        double diff = Math.abs(dataDevolucao.getTime() - dataPrevista.getTime());
+        if (diff != 0) {
+            double diffDays = diff / (24 * 60 * 60 * 1000);
+            return diffDays * getValorMulta();
+        } else {
+            return 0.0;
+        }
+
+    }
+
+    public void gerarValorPagar(Date dataD) {
+
+        this.dataDevolucao = dataD;
+
+        precoTotal = 0; //alterar para que receba o valor final da finalização da locação
+
+    }
+
+    //gerados automaticamente
+    public Date getDataRetirada() {
+        return dataRetirada;
+    }
+
+    public Date getDataPrevista() {
+        return dataPrevista;
+    }
+
+    public Date getDataDevolucao() {
+        return dataDevolucao;
+    }
+
+    public double getPrecoTotal() {
+        return precoTotal;
+    }
+
+    public double getValorMulta() {
+        return valorMulta;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public Produto getProduto() {
+        return produto;
+    }
+
 }

@@ -56,4 +56,10 @@ public abstract class Produto {
 //    }
 //    public void selecionarProduto() {
 //    }
+    
+    //Preco por Dia 
+    public double getPrecoPorDia() {
+        return precoPorDia;
+    }
+    
 }

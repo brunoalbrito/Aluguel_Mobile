@@ -35,34 +35,88 @@ public class Controle {
 
     //Métodos para a classe Cliente
     //Método que verifica, a partir do CPF ou CNPJ, se o cliente já está cadastrado no Sistema
-    public boolean consultaCliente(int codigo) {
+    public Cliente consultaCliente(int codigo) {
         //Percorrendo lista de clientes para encontrar cliente desejado
         for (Cliente cliente : clientes) {
             if (cliente instanceof Fisico) {
                 Fisico fisico = (Fisico) cliente;
                 if (fisico.getCPF() == codigo) {
-                    return true;
+                    return fisico;
                 }
             } else {
                 Juridico juridico = (Juridico) cliente;
                 if (juridico.getCNPJ() == codigo) {
-                    return true;
+                    return juridico;
                 }
             }
         }
-        return false;
+        return null;
     }
 
     //Método para validar informações digitadas pelo funcionário da loja, validá-las e criar um novo Cliente
-    public void cadastrarCliente(String endereco, String telefone, int codigo, String nome) {
-        //Fazer validação dos parâmetros
-
-        //Instânciar, de acordo com alguma lógica para descobrir o tipo, um novo Cliente Físico ou Jurídico
+    public void cadastrarCliente() {
+        
+        System.out.println("Novo cliente 1 -Físico ou 2 - Jurídico?");
+        int opcao = entrada.nextInt();
+        
+        if (opcao == 1) {
+            System.out.println("Nome: ");
+            String nome = entrada.next();
+            System.out.println("CPF: ");
+            int CPF = entrada.nextInt();
+            System.out.println("Telefone: ");
+            int tel = entrada.nextInt();
+            System.out.println("Endereço: ");
+            String endereco = entrada.next();
+            Fisico f = new Fisico(nome, CPF, endereco, tel);
+            
+            clientes.add(f);
+            
+        }
+        if (opcao == 2) {
+            
+            System.out.println("Nome Fantasia: ");
+            String nome = entrada.next();
+            System.out.println("CNPJ: ");
+            int CNPJ = entrada.nextInt();
+            System.out.println("Telefone: ");
+            int tel = entrada.nextInt();
+            System.out.println("Endereço: ");
+            String endereco = entrada.next();
+            Juridico j = new Juridico(nome, CNPJ, endereco, tel);
+            
+            clientes.add(j);
+        }
+        
+        
+        
     }
 
-    public void alterarDadosCliente(String endereco, String telefone, int codigo, String nome) {
+    public void alterarDadosCliente() {
+        
+    
+        System.out.println("Digite o CPF ou CNPJ");
+        
+        int codigo = entrada.nextInt();
+        
+        Cliente c = consultaCliente(codigo);
+        
+        if (c != null) {
+            
+            if (c instanceof Fisico) {
+                // >>>>>>>>>>>>>>>>>>>>>>>>>>continuar aqui a desenvolver
+            }
+            if (c instanceof Juridico) {
+                
+            }
+            
+        }else{
+            System.out.println("Cliente nao encontrado");
+        }
 
     }
+    
+    
 
     //Métodos para a Classe Produto
     public void acrescentarProduto() {
@@ -162,7 +216,6 @@ public class Controle {
 
     //Métodos para a Classe Locação
     public void registrarLocacao() {
-
     }
 
     public void finalizarLocacao() {

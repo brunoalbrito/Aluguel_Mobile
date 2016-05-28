@@ -28,4 +28,10 @@ public class Juridico extends Cliente {
     public String getNomeFantasia() {
         return nomeFantasia;
     }        
+    public void alterarDados(String nomeFantasia, int CNPJ,String endereco,int telefone){
+        this.CNPJ = CNPJ;
+        this.nomeFantasia = nomeFantasia;
+        super.endereco = endereco;
+        super.telefone = telefone;
+    }
 }

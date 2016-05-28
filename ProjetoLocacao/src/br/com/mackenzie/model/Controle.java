@@ -104,10 +104,31 @@ public class Controle {
         if (c != null) {
             
             if (c instanceof Fisico) {
-                // >>>>>>>>>>>>>>>>>>>>>>>>>>continuar aqui a desenvolver
+                Fisico f = ((Fisico) c);
+                System.out.println(f.toString());
+                System.out.println("Informe o novo nome");
+                String nomeCompleto = entrada.next();
+                System.out.println("Informe o novo CPF");
+                int CPF = entrada.nextInt();
+                System.out.println("Informe o novo Endereço");
+                String endereco = entrada.next();
+                System.out.println("Informe o novo Telefone");
+                int telefone= entrada.nextInt();
+                
+                f.alterarDados(nomeCompleto, CPF, endereco, telefone);
             }
             if (c instanceof Juridico) {
-                
+                Juridico j = ((Juridico) c);
+                System.out.println(j.toString());
+                System.out.println("Informe o novo Nome Fantasia");
+                String nomeFantasia = entrada.next();
+                System.out.println("Informe o novo CPF");
+                int CNPJ = entrada.nextInt();
+                System.out.println("Informe o novo CNPJ");
+                String endereco = entrada.next();
+                System.out.println("Informe o novo Telefone");
+                int telefone= entrada.nextInt();
+                j.alterarDados(nomeFantasia, CNPJ, endereco, telefone);
             }
             
         }else{

@@ -1,6 +1,7 @@
 package br.com.mackenzie.model;
 
 //
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Tablet extends Produto {
@@ -36,5 +37,12 @@ public class Tablet extends Produto {
         this.acessorios = acessorios;
         this.camera = camera;
         this.acessoRede = acessoRede;
+    }
+    @Override
+    public String toString(){
+        SimpleDateFormat ano = new SimpleDateFormat("yyyy");
+        return "Modelo: " + modeloProduto + " Sistema Operacional: " + sistemaOperacional + " Ano Fabricação: " + ano.format(anoFabricacao)
+                + "\nPolegadas: " + telaPol + " Resoluçâo: " + telaResolucao + " Fabricante: " + fabricante + " \nPreço p/ dia: " + precoPorDia
+                + " Status: " + statusAlugado + " \nAcessorios: " + acessorios + " Camera: "+camera+" Acesso à Rede: "+acessoRede;
     }
 }

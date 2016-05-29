@@ -11,18 +11,20 @@ public abstract class Produto {
     protected double telaPol;
     protected String telaResolucao;
     protected String fabricante;
+    protected Fornecedor fornecedor;
     protected double precoPorDia;
     protected StatusProduto statusAlugado;
     protected String acessorios;
 
     public Produto(String modeloProduto, SO sistemaOperacional, Date anoFabricacao, double telaPol, String telaResolucao,
-            String fabricante, double precoPorDia, boolean statusAlugado, String acessorios) {
+            String fabricante, Fornecedor fornecedor, double precoPorDia, String acessorios) {
         this.modeloProduto = modeloProduto;
         this.sistemaOperacional = SO.NAOINFORMADO;
         this.anoFabricacao = anoFabricacao;
         this.telaPol = telaPol;
         this.telaResolucao = telaResolucao;
         this.fabricante = fabricante;
+        this.fornecedor = fornecedor;
         this.precoPorDia = precoPorDia;
         this.statusAlugado = StatusProduto.DISPONIVEL;
         this.acessorios = acessorios;

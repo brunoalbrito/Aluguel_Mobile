@@ -9,8 +9,8 @@ public class Tablet extends Produto {
     private boolean acessoRede;
 
     public Tablet(String modeloProduto, SO sistemaOperacional, Date anoFabricacao, double telaPol, String telaResolucao,
-            String fabricante, double precoPorDia, boolean statusAlugado, String acessorios, boolean camera, boolean acessoRede) {
-        super(modeloProduto, sistemaOperacional, anoFabricacao, telaPol, telaResolucao, fabricante, precoPorDia, statusAlugado, acessorios);
+            String fabricante, Fornecedor fornecedor, double precoPorDia, String acessorios, boolean camera, boolean acessoRede) {
+        super(modeloProduto, sistemaOperacional, anoFabricacao, telaPol, telaResolucao, fabricante, fornecedor, precoPorDia, acessorios);
         this.camera = camera;
         this.acessoRede = acessoRede;
     }

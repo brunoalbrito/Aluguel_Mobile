@@ -3,6 +3,8 @@ package br.com.mackenzie.model;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -34,8 +36,8 @@ public class Controle {
     }
 
     //Métodos para a classe Cliente
-    //Método que verifica, a partir do CPF ou CNPJ, se o cliente já está cadastrado no Sistema
     public Cliente consultaCliente(int codigo) {
+        //verifica, a partir do CPF ou CNPJ, se o cliente já está cadastrado no Sistema
         //Percorrendo lista de clientes para encontrar cliente desejado
         for (Cliente cliente : clientes) {
             if (cliente instanceof Fisico) {
@@ -53,12 +55,12 @@ public class Controle {
         return null;
     }
 
-    //Método para validar informações digitadas pelo funcionário da loja, validá-las e criar um novo Cliente
     public void cadastrarCliente() {
-        
+
+        //Método para validar informações digitadas pelo funcionário da loja, validá-las e criar um novo Cliente
         System.out.println("Novo cliente 1 -Físico ou 2 - Jurídico?");
         int opcao = entrada.nextInt();
-        
+
         if (opcao == 1) {
             System.out.println("Nome: ");
             String nome = entrada.next();
@@ -69,12 +71,12 @@ public class Controle {
             System.out.println("Endereço: ");
             String endereco = entrada.next();
             Fisico f = new Fisico(nome, CPF, endereco, tel);
-            
+
             clientes.add(f);
-            
+
         }
         if (opcao == 2) {
-            
+
             System.out.println("Nome Fantasia: ");
             String nome = entrada.next();
             System.out.println("CNPJ: ");
@@ -84,25 +86,23 @@ public class Controle {
             System.out.println("Endereço: ");
             String endereco = entrada.next();
             Juridico j = new Juridico(nome, CNPJ, endereco, tel);
-            
+
             clientes.add(j);
         }
-        
-        
-        
+
     }
 
     public void alterarDadosCliente() {
-        
-    
+
+        //altera os dados dos clientes    
         System.out.println("Digite o CPF ou CNPJ");
-        
+
         int codigo = entrada.nextInt();
-        
+
         Cliente c = consultaCliente(codigo);
-        
+
         if (c != null) {
-            
+
             if (c instanceof Fisico) {
                 Fisico f = ((Fisico) c);
                 System.out.println(f.toString());
@@ -113,8 +113,8 @@ public class Controle {
                 System.out.println("Informe o novo Endereço");
                 String endereco = entrada.next();
                 System.out.println("Informe o novo Telefone");
-                int telefone= entrada.nextInt();
-                
+                int telefone = entrada.nextInt();
+
                 f.alterarDados(nomeCompleto, CPF, endereco, telefone);
             }
             if (c instanceof Juridico) {
@@ -127,20 +127,68 @@ public class Controle {
                 System.out.println("Informe o novo CNPJ");
                 String endereco = entrada.next();
                 System.out.println("Informe o novo Telefone");
-                int telefone= entrada.nextInt();
+                int telefone = entrada.nextInt();
                 j.alterarDados(nomeFantasia, CNPJ, endereco, telefone);
             }
-            
-        }else{
+
+        } else {
             System.out.println("Cliente nao encontrado");
         }
 
     }
-    
-    
 
     //Métodos para a Classe Produto
-    public void acrescentarProduto() {
+    public void acrescentarProduto() throws ParseException {
+        SimpleDateFormat formatador = new SimpleDateFormat("yyyy");
+        System.out.println("Criando um produto:"
+                + "\n Primeiramente selecione se seu produto é 1 - Smartphone ou 2 - Tablet");
+        int opc = entrada.nextInt();
+
+        System.out.println("Modelo do produto: ");
+        String modeloProduto = entrada.next();
+        System.out.println("1- Android / 2- Apple / 3- Windows Phone / 4- outros");
+        //corrigir que é erro
+        int enu = entrada.nextInt();
+        System.out.println("Ano de fabricação (yyyy)");
+        String data = entrada.next();
+        System.out.println("Polegadas na tela: ");
+        double pol = entrada.nextDouble();
+        System.out.println("Resolução da tela (ppi):");
+        String telaResolucao = entrada.next();
+        System.out.println("Fabricante: ");
+        String fabricante = entrada.next();
+        System.out.println("Fornecedor cadastrado no sistema: ");
+        int codigoF = entrada.nextInt();
+        Fornecedor f = selecionarFornecedor(codigoF);
+        System.out.println("Preço por dia: ");
+        double preco = entrada.nextDouble();
+        System.out.println("Acessorios: ");
+        String acess = entrada.next();
+
+        if (opc == 1) {
+
+            System.out.println("Resolução da camera: ");
+            double resolu = entrada.nextDouble();
+            System.out.println("Rede: 3 - 3G / 4 - 4G");
+            char rede = entrada.next().charAt(0);
+            System.out.println("Dual chip 1 - Sim / 2 - Não");
+            boolean dual = (entrada.nextInt() == 1);
+
+            Smartphone s = new Smartphone(modeloProduto, enu, formatador.parse(data), pol, telaResolucao, fabricante, f, preco, acess, resolu, rede, dual);
+
+            produtos.add(s);
+        }
+        if (opc == 2) {
+            
+            System.out.println("Tem camera? 1 - Sim / 2 - Não");
+            boolean camera = (entrada.nextInt() == 1);
+            System.out.println("Acessa a rede? 1 - Sim / 2 - Não");
+            boolean conexao = (entrada.nextInt() == 1);
+            
+            Tablet t = new Tablet(modeloProduto, enu, formatador.parse(data), pol, telaResolucao, fabricante, f,preco,acess, camera,conexao);
+
+            produtos.add(t);
+        }
 
     }
 
@@ -162,7 +210,7 @@ public class Controle {
 
     //Métodos para a Classe Fornecedor
     public void acrescentarFornecedor() {
-        //modelo de método que pede dados de entrada aqui mesmo
+        //pede os dados de entrada e cria um fornecedor
         System.out.println("Nome do Fornecedor: ");
         String nome = entrada.next();
         System.out.println("Telefone para contato: ");
@@ -189,39 +237,39 @@ public class Controle {
     }
 
     public void alterarDadosFornecedor() {
-        
+
         //atualiza os dados de um fornecedor selecionado
         System.out.println("Qual o fornecedor?");
         int selec = entrada.nextInt();
-        
+
         if (selecionarFornecedor(selec) != null) {
             Fornecedor f = selecionarFornecedor(selec);
-            
+
             System.out.println("Altere o nome ou reescreva-o:");
             String novoNome = entrada.next();
             System.out.println("Altere o telefone ou reescreva-o:");
             int novoTel = entrada.nextInt();
-            
+
             f.setNomeFornecedor(novoNome);
             f.setTel(novoTel);
-        }else{
+        } else {
             System.out.println("Fornecedor não encontrado");
         }
-        
+
     }
 
     public void excluirFornecedor() {
-        
+
         //exclui diretamente um fornecedor do array
         System.out.println("Qual o fornecedor?");
         int selec = entrada.nextInt();
-        
+
         if (selecionarFornecedor(selec) != null) {
             fornecedores.remove(selecionarFornecedor(selec));
-        }else{
+        } else {
             System.out.println("Fornecedor não encontrado");
         }
-        
+
     }
 
     public Fornecedor selecionarFornecedor(int cod) {

@@ -16,12 +16,22 @@ public class Tablet extends Produto {
         this.acessoRede = acessoRede;
     }
 
+    public boolean isCamera() {
+        return camera;
+    }
+
+    public boolean isAcessoRede() {
+        return acessoRede;
+    }
+
+    
+    
     @Override
     public String visualizarProdutos() {
-        return "Modelo: " + modeloProduto + " Sistema Operacional " + sistemaOperacional + " Ano de Fabricação: "
-                + anoFabricacao + " Polegadas: " + telaPol + " Fabricante: " + fabricante + " Preço por dia: "
-                + precoPorDia + " Status: " + statusAlugado + " Acessorio: " + acessorios + ""
-                + "Possui Camera: " + camera + " Acesso à Rede: " + acessoRede;
+        SimpleDateFormat ano = new SimpleDateFormat("yyyy");
+        return "Modelo: " + modeloProduto + " / Sistema Operacional " + sistemaOperacional + " / Ano de Fabricação: "
+                + ano.format(anoFabricacao) + " / Polegadas: " + telaPol + " / Fabricante: " + fabricante + " / Fornecedor: "+ fornecedor.getNomeFornecedor() + " / Preço por dia: "
+                + precoPorDia + " / Status: " + statusAlugado + " / Acessorio: " + acessorios + " / Possui Camera: " + camera + " / Acesso à Rede: " + acessoRede;
     }
 
     public void alterarDadosProduto(String modeloProduto, SO sistemaOperacional, Date anoFabricacao, double telaPol, String telaResolucao,
@@ -38,11 +48,5 @@ public class Tablet extends Produto {
         this.camera = camera;
         this.acessoRede = acessoRede;
     }
-    @Override
-    public String toString(){
-        SimpleDateFormat ano = new SimpleDateFormat("yyyy");
-        return "Modelo: " + modeloProduto + " Sistema Operacional: " + sistemaOperacional + " Ano Fabricação: " + ano.format(anoFabricacao)
-                + "\nPolegadas: " + telaPol + " Resoluçâo: " + telaResolucao + " Fabricante: " + fabricante + " \nPreço p/ dia: " + precoPorDia
-                + " Status: " + statusAlugado + " \nAcessorios: " + acessorios + " Camera: "+camera+" Acesso à Rede: "+acessoRede;
-    }
+    
 }

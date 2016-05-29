@@ -24,4 +24,11 @@ public class Fisico extends Cliente {
         super.endereco = endereco;
         super.telefone = telefone;
     }
+
+    @Override
+    public String toString() {
+        return "CPF= " + CPF + ", Nome Completo= " + nomeCompleto;
+    }
+    
+    
 }

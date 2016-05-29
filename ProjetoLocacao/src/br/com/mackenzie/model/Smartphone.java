@@ -19,8 +19,9 @@ public class Smartphone extends Produto {
 
     @Override
     public String visualizarProdutos() {
+        SimpleDateFormat ano = new SimpleDateFormat("yyyy");
         return "Modelo: " + modeloProduto + " Sistema Operacional " + sistemaOperacional + " Ano de Fabricação: "
-                + anoFabricacao + " Polegadas: " + telaPol + " Fabricante: " + fabricante + " Preço por dia: "
+                + ano.format(anoFabricacao) + " Polegadas: " + telaPol + " Fabricante: " + fabricante + "Fornecedor: " + fornecedor.getNomeFornecedor() +" Preço por dia: "
                 + precoPorDia + " Status: " + statusAlugado + " Acessorio: " + acessorios + ""
                 + "Resolução da Camera: " + cameraResolucao + " Tipo de Conexão+ " + tipoRede + " DualChip: " + dualChip;
     }
@@ -41,12 +42,17 @@ public class Smartphone extends Produto {
         this.dualChip = dualChip;
     }
 
-    @Override
-    public String toString() {
-        SimpleDateFormat ano = new SimpleDateFormat("yyyy");
-        return "Modelo: " + modeloProduto + " Sistema Operacional: " + sistemaOperacional + " Ano Fabricação: " + ano.format(anoFabricacao)
-                + "\nPolegadas: " + telaPol + " Resoluçâo: " + telaResolucao + " Fabricante: " + fabricante + " \nPreço p/ dia: " + precoPorDia
-                + " Status: " + statusAlugado + " \nAcessorios: " + acessorios + " Resolução da Câmera: " + cameraResolucao + " Tipo de Rede+ "
-                + tipoRede + " Dual Chip: " + dualChip;
+    public double getCameraResolucao() {
+        return cameraResolucao;
     }
+
+    public char getTipoRede() {
+        return tipoRede;
+    }
+
+    public boolean isDualChip() {
+        return dualChip;
+    }
+   
+    
 }

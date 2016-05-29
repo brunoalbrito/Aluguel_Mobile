@@ -34,4 +34,11 @@ public class Juridico extends Cliente {
         super.endereco = endereco;
         super.telefone = telefone;
     }
+
+    @Override
+    public String toString() {
+        return "CNPJ = " + CNPJ + ", Nome Fantasia = " + nomeFantasia;
+    }
+    
+    
 }

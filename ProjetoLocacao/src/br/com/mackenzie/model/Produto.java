@@ -39,8 +39,8 @@ public abstract class Produto {
                 + precoPorDia + " Status: " + statusAlugado + " Acessorio: " + acessorios;
     }
 
-//    public void acrescentarProduto() {
-//    }
+
+
     public void alterarDadosProduto(String modeloProduto, SO sistemaOperacional, Date anoFabricacao, double telaPol, String telaResolucao,
             String fabricante, double precoPorDia, boolean statusAlugado, String acessorios) {
         this.modeloProduto = modeloProduto;
@@ -54,14 +54,47 @@ public abstract class Produto {
         this.acessorios = acessorios;
     }
 
-//    public void excluirProduto() {
-//    }
-//    public void selecionarProduto() {
-//    }
+
     
     //Preco por Dia 
     public double getPrecoPorDia() {
         return precoPorDia;
+    }
+
+    public String getModeloProduto() {
+        return modeloProduto;
+    }
+
+    public SO getSistemaOperacional() {
+        return sistemaOperacional;
+    }
+
+    public Date getAnoFabricacao() {
+        return anoFabricacao;
+    }
+
+    public double getTelaPol() {
+        return telaPol;
+    }
+
+    public String getTelaResolucao() {
+        return telaResolucao;
+    }
+
+    public String getFabricante() {
+        return fabricante;
+    }
+
+    public Fornecedor getFornecedor() {
+        return fornecedor;
+    }
+
+    public StatusProduto getStatusAlugado() {
+        return statusAlugado;
+    }
+
+    public String getAcessorios() {
+        return acessorios;
     }
     
 }

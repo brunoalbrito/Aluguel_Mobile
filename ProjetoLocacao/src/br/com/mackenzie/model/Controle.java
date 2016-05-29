@@ -196,7 +196,7 @@ public class Controle {
                     break;
             }
 
-            Smartphone s = new Smartphone(modeloProduto, sistemaO, formatador.parse(data), pol, telaResolucao, fabricante, f, preco, acess, resolu, rede, dual);
+            Smartphone s = new Smartphone(modeloProduto, sistemaO, formatador.parse(data), pol, telaResolucao, fabricante, f, preco, StatusProduto.DISPONIVEL, acess, resolu, rede, dual);
 
             produtos.add(s);
         }
@@ -229,7 +229,7 @@ public class Controle {
                     break;
             }
 
-            Tablet t = new Tablet(modeloProduto, sistemaO, formatador.parse(data), pol, telaResolucao, fabricante, f, preco, acess, camera, conexao);
+            Tablet t = new Tablet(modeloProduto, sistemaO, formatador.parse(data), pol, telaResolucao, fabricante, f, preco, StatusProduto.DISPONIVEL, acess, camera, conexao);
 
             produtos.add(t);
         }
@@ -237,7 +237,12 @@ public class Controle {
     }
 
     public void visualizarProdutos() {
-
+        System.out.println("Todos os produtos disponiveis");
+        for (Produto p : produtos) {
+            if (p.statusAlugado == StatusProduto.DISPONIVEL) {
+                p.toString();
+            }
+        }
     }
 
     public void alterarDadosProduto() {

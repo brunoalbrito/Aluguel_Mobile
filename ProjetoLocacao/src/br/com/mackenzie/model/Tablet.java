@@ -9,8 +9,8 @@ public class Tablet extends Produto {
     private boolean acessoRede;
 
     public Tablet(String modeloProduto, SO sistemaOperacional, Date anoFabricacao, double telaPol, String telaResolucao,
-            String fabricante, Fornecedor fornecedor, double precoPorDia, String acessorios, boolean camera, boolean acessoRede) {
-        super(modeloProduto, sistemaOperacional, anoFabricacao, telaPol, telaResolucao, fabricante, fornecedor, precoPorDia, acessorios);
+            String fabricante, Fornecedor fornecedor, double precoPorDia, StatusProduto statusProduto, String acessorios, boolean camera, boolean acessoRede) {
+        super(modeloProduto, sistemaOperacional, anoFabricacao, telaPol, telaResolucao, fabricante, fornecedor, precoPorDia, statusProduto, acessorios);
         this.camera = camera;
         this.acessoRede = acessoRede;
     }
@@ -19,10 +19,10 @@ public class Tablet extends Produto {
     public String visualizarProdutos() {
         return "Modelo: " + modeloProduto + " Sistema Operacional " + sistemaOperacional + " Ano de Fabricação: "
                 + anoFabricacao + " Polegadas: " + telaPol + " Fabricante: " + fabricante + " Preço por dia: "
-                + precoPorDia + " Status: " + statusAlugado + " Acessorio: " + acessorios+""
-                + "Possui Camera: "+camera+" Acesso à Rede: "+acessoRede;
+                + precoPorDia + " Status: " + statusAlugado + " Acessorio: " + acessorios + ""
+                + "Possui Camera: " + camera + " Acesso à Rede: " + acessoRede;
     }
-    
+
     public void alterarDadosProduto(String modeloProduto, SO sistemaOperacional, Date anoFabricacao, double telaPol, String telaResolucao,
             String fabricante, double precoPorDia, boolean statusAlugado, String acessorios, boolean camera, boolean acessoRede) {
         this.modeloProduto = modeloProduto;

@@ -23,7 +23,7 @@ public class BrunoMain {
         SimpleDateFormat formatador = new SimpleDateFormat("yyyy");
         String data = "2015";
         
-        produtos.add(new Smartphone("Nokia", SO.ANDROID,formatador.parse(data) , 0, "Teste", "Kibom", 0, true, "Sorvete", 0, 'A', true));
+        //produtos.add(new Smartphone("Nokia", SO.ANDROID,formatador.parse(data) , 0, "Teste", "Kibom", 0, true, "Sorvete", 0, 'A', true));
         System.out.println(produtos.get(produtos.size() -1).visualizarProdutos());;
     }
 }

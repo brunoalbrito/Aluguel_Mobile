@@ -173,19 +173,63 @@ public class Controle {
             char rede = entrada.next().charAt(0);
             System.out.println("Dual chip 1 - Sim / 2 - Não");
             boolean dual = (entrada.nextInt() == 1);
+            System.out.println("Sistema Operacional "
+                    + "\n1 - ANDROID"
+                    + "\n2 - APPLE"
+                    + "\n3 - WINDOWS PHONE "
+                    + "\n4 - NAO INFORMADO");
+            int choose = entrada.nextInt();
 
-            Smartphone s = new Smartphone(modeloProduto, enu, formatador.parse(data), pol, telaResolucao, fabricante, f, preco, acess, resolu, rede, dual);
+            SO sistemaO = null;
+            switch (choose) {
+                case 1:
+                    sistemaO = SO.ANDROID;
+                    break;
+                case 2:
+                    sistemaO = SO.APPLE;
+                    break;
+                case 3:
+                    sistemaO = SO.WINDOWS_PHONE;
+                    break;
+                case 4:
+                    sistemaO = SO.NAOINFORMADO;
+                    break;
+            }
+
+            Smartphone s = new Smartphone(modeloProduto, sistemaO, formatador.parse(data), pol, telaResolucao, fabricante, f, preco, acess, resolu, rede, dual);
 
             produtos.add(s);
         }
         if (opc == 2) {
-            
+
             System.out.println("Tem camera? 1 - Sim / 2 - Não");
             boolean camera = (entrada.nextInt() == 1);
             System.out.println("Acessa a rede? 1 - Sim / 2 - Não");
             boolean conexao = (entrada.nextInt() == 1);
-            
-            Tablet t = new Tablet(modeloProduto, enu, formatador.parse(data), pol, telaResolucao, fabricante, f,preco,acess, camera,conexao);
+            System.out.println("Sistema Operacional "
+                    + "\n1 - ANDROID"
+                    + "\n2 - APPLE"
+                    + "\n3 - WINDOWS PHONE "
+                    + "\n4 - NAO INFORMADO");
+            int choose = entrada.nextInt();
+
+            SO sistemaO = null;
+            switch (choose) {
+                case 1:
+                    sistemaO = SO.ANDROID;
+                    break;
+                case 2:
+                    sistemaO = SO.APPLE;
+                    break;
+                case 3:
+                    sistemaO = SO.WINDOWS_PHONE;
+                    break;
+                case 4:
+                    sistemaO = SO.NAOINFORMADO;
+                    break;
+            }
+
+            Tablet t = new Tablet(modeloProduto, sistemaO, formatador.parse(data), pol, telaResolucao, fabricante, f, preco, acess, camera, conexao);
 
             produtos.add(t);
         }

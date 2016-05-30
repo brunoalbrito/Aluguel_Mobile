@@ -1,5 +1,2 @@
-F:Germano:98:Novo Endere�o:1234567890
-F:cliente2:1234:end2:123
-J:empresa1:12345:end3:123
-F:Renan:123456:End1:123
-F:Renan S:1234:End 1:12345678
+F:Gustavo Oliveira:47311358850:Rua antonio aggio, 1005:987997848
+F:Renan Germano:54788495562:Rua das ervas finas:54879985

@@ -32,6 +32,20 @@ public class Controle {
     private Scanner entradaString = new Scanner(System.in);
     private Scanner entradaNumerica = new Scanner(System.in);
 
+    public Controle() {
+        //Inicializando lista com elementos do sistema
+        clientes = new ArrayList<Cliente>();
+        fornecedores = new ArrayList<Fornecedor>();
+        produtos = new ArrayList<Produto>();
+        locacoes = new ArrayList<Locacao>();
+
+        //Lendo arquivos Txt que possuem elementos do sistema já salvos
+        inicializarClientes("clientes.txt");
+        inicializarFornecedores("fornecedores.txt");
+        inicializarProdutos("produtos.txt");
+        //inicializarLocacoes("locacoes.txt");
+    }
+
     public List<Cliente> getClientes() {
         return clientes;
     }
@@ -48,22 +62,8 @@ public class Controle {
         return locacoes;
     }
 
-    public Controle() {
-        //Inicializando lista com elementos do sistema
-        clientes = new ArrayList();
-        produtos = new ArrayList();
-        fornecedores = new ArrayList();
-        locacoes = new ArrayList();
-
-        //Lendo arquivos Txt que possuem elementos do sistema já salvos
-        inicializarClientes("clientes.txt");
-        inicializarFornecedores("fornecedores.txt");
-        inicializarProdutos("produtos.txt");
-        inicializarLocacoes("locacoes.txt");
-    }
-
     //Métodos para a classe Cliente
-    public Cliente consultaCliente(int codigo) {
+    public Cliente consultaCliente(long codigo) {
         //verifica, a partir do CPF ou CNPJ, se o cliente já está cadastrado no Sistema
         //Percorrendo lista de clientes para encontrar cliente desejado
         for (Cliente cliente : clientes) {
@@ -82,6 +82,25 @@ public class Controle {
         return null;
     }
 
+    public void achaCliente() {
+
+        System.out.println("Digite o CPF ou CNPJ:");
+        Cliente c1 = consultaCliente(entradaNumerica.nextLong());
+        if (c1 != null) {
+            System.out.println("Cliente: " + c1.toString() + " / Endereço: " + c1.getEndereco() + " / Telefone: " + c1.getTelefone() + "");
+        } else {
+            System.out.println("Cliente não encontrado!");
+        }
+
+    }
+
+    public void listarClientes() {
+        //lista todos os clientes cadastrados
+        for (Cliente cliente : clientes) {
+            System.out.println(cliente.toString());
+        }
+    }
+
     public void cadastrarCliente() {
 
         //Método para validar informações digitadas pelo funcionário da loja, validá-las e criar um novo Cliente
@@ -93,7 +112,7 @@ public class Controle {
             String nome = entradaString.nextLine();
 
             System.out.println("CPF: ");
-            int CPF = entradaNumerica.nextInt();
+            long CPF = entradaNumerica.nextLong();
 
             System.out.println("Telefone: ");
             int tel = entradaNumerica.nextInt();
@@ -110,7 +129,7 @@ public class Controle {
             String nome = entradaString.nextLine();
 
             System.out.println("CNPJ: ");
-            int CNPJ = entradaNumerica.nextInt();
+            long CNPJ = entradaNumerica.nextLong();
 
             System.out.println("Telefone: ");
             int tel = entradaNumerica.nextInt();
@@ -129,7 +148,7 @@ public class Controle {
         //altera os dados dos clientes    
         System.out.println("Digite o CPF ou CNPJ");
 
-        int codigo = entradaNumerica.nextInt();
+        long codigo = entradaNumerica.nextLong();
 
         Cliente c = consultaCliente(codigo);
 
@@ -141,7 +160,7 @@ public class Controle {
                 System.out.println("Informe o novo nome");
                 String nomeCompleto = entradaString.nextLine();
                 System.out.println("Informe o novo CPF");
-                int CPF = entradaNumerica.nextInt();
+                long CPF = entradaNumerica.nextLong();
                 System.out.println("Informe o novo Endereço");
                 String endereco = entradaString.nextLine();
                 System.out.println("Informe o novo Telefone");
@@ -155,7 +174,7 @@ public class Controle {
                 System.out.println("Informe o novo Nome Fantasia");
                 String nomeFantasia = entradaString.nextLine();
                 System.out.println("Informe o novo CPF");
-                int CNPJ = entradaNumerica.nextInt();
+                long CNPJ = entradaNumerica.nextLong();
                 System.out.println("Informe o novo CNPJ");
                 String endereco = entradaString.nextLine();
                 System.out.println("Informe o novo Telefone");
@@ -171,7 +190,7 @@ public class Controle {
 
     //Métodos para a Classe Produto
     public void acrescentarProduto() throws ParseException {
-        SimpleDateFormat formatador = new SimpleDateFormat("yyyy");
+
         System.out.println("Criando um produto:"
                 + "\n Primeiramente selecione se seu produto é 1 - Smartphone ou 2 - Tablet");
         int opc = entradaNumerica.nextInt();
@@ -187,7 +206,7 @@ public class Controle {
         System.out.println("Fabricante: ");
         String fabricante = entradaString.nextLine();
         System.out.println("Fornecedor cadastrado no sistema: ");
-        int codigoF = entradaNumerica.nextInt();
+        long codigoF = entradaNumerica.nextLong();
         Fornecedor f = selecionarFornecedor(codigoF);
         System.out.println("Preço por dia: ");
         double preco = entradaNumerica.nextDouble();
@@ -316,7 +335,7 @@ public class Controle {
                 System.out.println("Fabricante: ");
                 String fabricante = entradaString.nextLine();
                 System.out.println("Fornecedor cadastrado no sistema: ");
-                int codigoF = entradaNumerica.nextInt();
+                long codigoF = entradaNumerica.nextLong();
                 Fornecedor f = selecionarFornecedor(codigoF);
                 System.out.println("Preço por dia: ");
                 double preco = entradaNumerica.nextDouble();
@@ -355,7 +374,7 @@ public class Controle {
                         sistemaO = SO.NAOINFORMADO;
                         break;
                 }
-                SimpleDateFormat formatador = new SimpleDateFormat("yyyy");
+
                 System.out.println("Ano de fabricação (aaaa)");
                 int data = entradaNumerica.nextInt();
                 System.out.println("Polegadas na tela: ");
@@ -365,7 +384,7 @@ public class Controle {
                 System.out.println("Fabricante: ");
                 String fabricante = entradaString.nextLine();
                 System.out.println("Fornecedor cadastrado no sistema: ");
-                int codigoF = entradaNumerica.nextInt();
+                long codigoF = entradaNumerica.nextLong();
                 Fornecedor f = selecionarFornecedor(codigoF);
                 System.out.println("Preço por dia: ");
                 double preco = entradaNumerica.nextDouble();
@@ -433,7 +452,7 @@ public class Controle {
         System.out.println("Telefone para contato: ");
         int tel = entradaNumerica.nextInt();
         System.out.println("CNPJ do Fornecedor: ");
-        int cnpj = entradaNumerica.nextInt();
+        long cnpj = entradaNumerica.nextLong();
 
         Fornecedor f = new Fornecedor(nome, tel, cnpj);
         fornecedores.add(f);
@@ -442,9 +461,9 @@ public class Controle {
 
     public void consultarFonecedor() {
 
-        //consulta por uma String e devolve todas as matches
+        //consulta e devolve o fornecedor se existente
         System.out.println("Qual o CNPJ do fornecedor?");
-        int cod = entradaNumerica.nextInt();
+        long cod = entradaNumerica.nextLong();
 
         System.out.println("Resultados para a sua busca:");
         for (Fornecedor f : fornecedores) {
@@ -455,11 +474,20 @@ public class Controle {
 
     }
 
+    public void listarFonecedores() {
+
+        //mostra todos os fornecedores ao ser chamado
+        System.out.println("Lista de todos os fornecedores:");
+        for (Fornecedor f : fornecedores) {
+            System.out.println("CNPJ: " + f.getCod() + " / Nome: " + f.getNomeFornecedor() + " / tel: " + f.getTel());
+        }
+    }
+
     public void alterarDadosFornecedor() {
 
         //atualiza os dados de um fornecedor selecionado
         System.out.println("Qual o CNPJ do fornecedor?");
-        int selec = entradaNumerica.nextInt();
+        long selec = entradaNumerica.nextLong();
 
         if (selecionarFornecedor(selec) != null) {
             Fornecedor f = selecionarFornecedor(selec);
@@ -491,7 +519,7 @@ public class Controle {
 
     }
 
-    public Fornecedor selecionarFornecedor(int cod) {
+    public Fornecedor selecionarFornecedor(long cod) {
         //procura um Fornecedor pelo codigo e o devolve quando encontrá-lo
         for (Fornecedor f : fornecedores) {
             if (f.getCod() == cod) {
@@ -525,7 +553,7 @@ public class Controle {
         Date dataPrevista = data.parse(entradaString.nextLine());
 
         System.out.println("Selecione Cliente por CPF ou CNPJ:");
-        c = consultaCliente(entradaNumerica.nextInt());
+        c = consultaCliente(entradaNumerica.nextLong());
 
         System.out.println("Selecione produto por modelo:");
         p = selecionarProduto(entradaString.nextLine());
@@ -567,9 +595,9 @@ public class Controle {
             while ((linha = in.readLine()) != null) {
                 String[] atribs = linha.split(":");
                 if (atribs[0].equals("F")) {
-                    clientes.add(new Fisico(atribs[1], Integer.parseInt(atribs[2]), atribs[3], Integer.parseInt(atribs[4])));
+                    clientes.add(new Fisico(atribs[1], Long.parseLong(atribs[2]), atribs[3], Integer.parseInt(atribs[4])));
                 } else {
-                    clientes.add(new Juridico(atribs[1], Integer.parseInt(atribs[2]), atribs[3], Integer.parseInt(atribs[4])));
+                    clientes.add(new Juridico(atribs[1], Long.parseLong(atribs[2]), atribs[3], Integer.parseInt(atribs[4])));
                 }
             }
         } catch (IOException | NumberFormatException e) {
@@ -582,8 +610,8 @@ public class Controle {
         try {
             BufferedReader in = new BufferedReader(new FileReader(file));
             String linha;
-            while((linha = in.readLine()) != null){
-                fornecedores.add(new Fornecedor(linha.split(":")[0],Integer.parseInt(linha.split(":")[1]),Integer.parseInt(linha.split(":")[2])));
+            while ((linha = in.readLine()) != null) {
+                fornecedores.add(new Fornecedor(linha.split(":")[0], Integer.parseInt(linha.split(":")[1]), Long.parseLong(linha.split(":")[2])));
             }
             in.close();
         } catch (IOException | NumberFormatException e) {
@@ -599,25 +627,26 @@ public class Controle {
             String linha;
             while ((linha = in.readLine()) != null) {
                 String[] infos = linha.split(":");
-                String modeloProduto = infos[0];
-                SO so = SO.valueOf(infos[1]);
-                int anoFabricacao = Integer.parseInt(infos[2]);
-                double telaPol = Double.parseDouble(infos[3]);
-                String telaResolucao = infos[4];
-                String fabricante = infos[5];
-                Fornecedor fornecedor = selecionarFornecedor(Integer.parseInt(infos[6]));
-                double precoPorDia = Double.parseDouble(infos[7]);
-                StatusProduto statusProduto = StatusProduto.valueOf(infos[8]);
-                String acessorio = infos[9];
+                String instancia = infos[0];
+                String modeloProduto = infos[1];
+                SO so = SO.valueOf(infos[2]);
+                int anoFabricacao = Integer.parseInt(infos[3]);
+                double telaPol = Double.parseDouble(infos[4]);
+                String telaResolucao = infos[5];
+                String fabricante = infos[6];
+                Fornecedor fornecedor = selecionarFornecedor(Long.parseLong(infos[7]));
+                double precoPorDia = Double.parseDouble(infos[8]);
+                StatusProduto statusProduto = StatusProduto.valueOf(infos[9]);
+                String acessorio = infos[10];
 
-                if (infos.equals("T")) {
-                    boolean camera = (infos[10].equals("true"))?true:false;
-                    boolean acessoRede = (infos[11].endsWith("true"))?true:false;
+                if (instancia.equals("T")) {
+                    boolean camera = (infos[11].equals("true")) ? true : false;
+                    boolean acessoRede = (infos[12].endsWith("true")) ? true : false;
                     produtos.add(new Tablet(modeloProduto, so, anoFabricacao, telaPol, telaResolucao, fabricante, fornecedor, precoPorDia, statusProduto, acessorio, camera, acessoRede));
                 } else {
-                    double cameraResolucao = Double.parseDouble(infos[10]);
-                    char tipoRede = infos[11].charAt(0);
-                    boolean dualChip = Boolean.parseBoolean(infos[12]);
+                    double cameraResolucao = Double.parseDouble(infos[11]);
+                    char tipoRede = infos[12].charAt(0);
+                    boolean dualChip = Boolean.parseBoolean(infos[13]);
                     produtos.add(new Smartphone(modeloProduto, so, anoFabricacao, telaPol, telaResolucao, fabricante, fornecedor, precoPorDia, statusProduto, acessorio, cameraResolucao, tipoRede, dualChip));
                 }
             }
@@ -633,14 +662,14 @@ public class Controle {
         try {
             BufferedReader in = new BufferedReader(new FileReader(file));
             String line;
-            while((line = in.readLine()) != null){
+            while ((line = in.readLine()) != null) {
                 String[] infos = line.split(":");
-                Date dataRetirada = (infos[0].equals("null"))?null:format.parse(infos[0]);
-                Date dataPrevista = (infos[1].equals("null"))?null:format.parse(infos[1]);
-                Date dataDevolucao = (infos[2].equals("null"))?null:format.parse(infos[2]);
+                Date dataRetirada = (infos[0].equals("null")) ? null : format.parse(infos[0]);
+                Date dataPrevista = (infos[1].equals("null")) ? null : format.parse(infos[1]);
+                Date dataDevolucao = (infos[2].equals("null")) ? null : format.parse(infos[2]);
                 double precoTotal = Double.parseDouble(infos[3]);
                 double valorMulta = Double.parseDouble(infos[4]);
-                Cliente cliente = consultaCliente(Integer.parseInt(infos[5]));
+                Cliente cliente = consultaCliente(Long.parseLong(infos[5]));
                 Produto produto = selecionarProduto(infos[6]);
                 int id = Integer.parseInt(infos[7]);
                 locacoes.add(new Locacao(cliente, produto, dataRetirada, dataPrevista, id));
@@ -674,7 +703,7 @@ public class Controle {
             System.exit(-1);
         }
     }
-    
+
     public void dumpFornecedores() {
         try {
             BufferedWriter out = new BufferedWriter(new FileWriter("fornecedores.txt"));
@@ -695,33 +724,38 @@ public class Controle {
             BufferedWriter out = new BufferedWriter(new FileWriter("produtos.txt"));
             for (Produto produto : produtos) {
                 StringBuffer linha = new StringBuffer();
-                linha.append(produto.getModeloProduto()
-                +":"+produto.getStatusAlugado()
-                +":"+produto.getAnoFabricacao()
-                +":"+produto.getTelaPol()
-                +":"+produto.getTelaResolucao()
-                +":"+produto.getFabricante()
-                +":"+produto.getFornecedor().getCod()
-                +":"+produto.getPrecoPorDia()
-                +":"+produto.getStatusAlugado()
-                +":"+produto.getAcessorios());
-                
                 if (produto instanceof Tablet) {
-                    linha.append(":"+((Tablet)produto).isCamera()
-                    +":"+((Tablet)produto).isAcessoRede());
+                    linha.append("T:");
                 } else {
-                    linha.append(":"+((Smartphone)produto).getCameraResolucao()
-                    +":"+((Smartphone)produto).getTipoRede()
-                    +":"+((Smartphone)produto).isDualChip());
+                    linha.append("S:");
                 }
-                out.write(linha.toString()+System.lineSeparator());
+                linha.append(produto.getModeloProduto()
+                        + ":" + produto.getSistemaOperacional()
+                        + ":" + produto.getAnoFabricacao()
+                        + ":" + produto.getTelaPol()
+                        + ":" + produto.getTelaResolucao()
+                        + ":" + produto.getFabricante()
+                        + ":" + produto.getFornecedor().getCod()
+                        + ":" + produto.getPrecoPorDia()
+                        + ":" + produto.getStatusAlugado()
+                        + ":" + produto.getAcessorios());
+
+                if (produto instanceof Tablet) {
+                    linha.append(":" + ((Tablet) produto).isCamera()
+                            + ":" + ((Tablet) produto).isAcessoRede());
+                } else {
+                    linha.append(":" + ((Smartphone) produto).getCameraResolucao()
+                            + ":" + ((Smartphone) produto).getTipoRede()
+                            + ":" + ((Smartphone) produto).isDualChip());
+                }
+                out.write(linha.toString() + System.lineSeparator());
             }
             out.flush();
             out.close();
         } catch (Exception e) {
             System.exit(-1);
         }
-    }    
+    }
 
     public void dumpLocacoes() {
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
@@ -729,7 +763,7 @@ public class Controle {
             BufferedWriter out = new BufferedWriter(new FileWriter("locacoes.txt"));
             String dataRetirada, dataPrevista, dataDevolucao;
             double precoTotal, valorMulta;
-            int codigo;
+            long codigo;
 
             for (Locacao l : locacoes) {
                 dataRetirada = (l.getDataRetirada() == null) ? "null" : format.format(l.getDataRetirada());

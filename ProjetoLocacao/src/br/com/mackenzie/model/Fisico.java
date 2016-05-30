@@ -1,16 +1,16 @@
 package br.com.mackenzie.model;
 
 public class Fisico extends Cliente {
-	private int CPF;
+	private long CPF;
 	private String nomeCompleto;
 
-    public Fisico(String nome, int CPF, String endereco, int telefone) {
+    public Fisico(String nome, long CPF, String endereco, int telefone) {
         super(endereco, telefone);
         this.nomeCompleto = nome;
         this.CPF = CPF;
     }
 
-    public int getCPF() {
+    public long getCPF() {
         return CPF;
     }
 
@@ -18,7 +18,7 @@ public class Fisico extends Cliente {
         return nomeCompleto;
     }
     //Bruno que fez - se der erro é culpa minha
-    public void alterarDados(String nomeCompleto, int CPF,String endereco,int telefone){
+    public void alterarDados(String nomeCompleto, long CPF,String endereco,int telefone){
         this.nomeCompleto =  nomeCompleto;
         this.CPF = CPF;
         super.endereco = endereco;

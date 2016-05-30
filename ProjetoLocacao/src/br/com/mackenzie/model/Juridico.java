@@ -10,23 +10,23 @@ package br.com.mackenzie.model;
 //
 //
 public class Juridico extends Cliente {
-	private int CNPJ;
+	private long CNPJ;
 	private String nomeFantasia;
 
-    public Juridico(String nomeFantasia, int CNPJ, String endereco, int telefone) {
+    public Juridico(String nomeFantasia, long CNPJ, String endereco, int telefone) {
         super(endereco, telefone);
         this.CNPJ = CNPJ;
         this.nomeFantasia = nomeFantasia;
     }
 
-    public int getCNPJ() {
+    public long getCNPJ() {
         return CNPJ;
     }
 
     public String getNomeFantasia() {
         return nomeFantasia;
     }        
-    public void alterarDados(String nomeFantasia, int CNPJ,String endereco,int telefone){
+    public void alterarDados(String nomeFantasia, long CNPJ,String endereco,int telefone){
         this.CNPJ = CNPJ;
         this.nomeFantasia = nomeFantasia;
         super.endereco = endereco;

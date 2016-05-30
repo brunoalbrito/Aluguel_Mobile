@@ -4,15 +4,15 @@ public class Fornecedor {
 
     private String nomeFornecedor;
     private int tel;
-    private int cod;
+    private long cod;
 
-    public Fornecedor(String nomeFornecedor, int tel, int cnpj) {
+    public Fornecedor(String nomeFornecedor, int tel, long cnpj) {
         this.nomeFornecedor = nomeFornecedor;
         this.tel = tel;
         this.cod = cnpj;
     }
     
-    public int getCod() {
+    public long getCod() {
         return cod;
     }
 

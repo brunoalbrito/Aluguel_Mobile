@@ -9,8 +9,6 @@ package br.com.mackenzie.model;
 //  @ Author : 
 //
 //
-
-
 public class Juridico extends Cliente {
 	private int CNPJ;
 	private String nomeFantasia;

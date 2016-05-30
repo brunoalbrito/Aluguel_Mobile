@@ -10,7 +10,7 @@ package br.com.mackenzie.model;
  * @author Bruno
  */
 public enum SO {
-    ANDROID(1),APPLE(2),WINDOWS_PHONE(3),NAOINFORMADO(4);
+    ANDROID(1),IOS(2),WINDOWS_PHONE(3),NAOINFORMADO(4);
     
     private final int valor;
     

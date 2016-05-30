@@ -35,9 +35,9 @@ public abstract class Produto {
     }
 
     public String visualizarProdutos() {
-        return "Modelo: " + modeloProduto + " Sistema Operacional " + sistemaOperacional + " Ano de Fabricação: "
-                + anoFabricacao + " Polegadas: " + telaPol + " Fabricante: " + fabricante + " Preço por dia: "
-                + precoPorDia + " Status: " + statusAlugado + " Acessorio: " + acessorios;
+        return "Modelo: " + modeloProduto + " / Sistema Operacional " + sistemaOperacional + " / Ano de Fabricação: "
+                + anoFabricacao + " / Polegadas: " + telaPol + " / Fabricante: " + fabricante + " / Preço por dia: "
+                + precoPorDia + " / Status: " + statusAlugado + " / Acessorio: " + acessorios;
     }
 
 

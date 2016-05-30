@@ -30,8 +30,8 @@ public class Tablet extends Produto {
     public String visualizarProdutos() {
         SimpleDateFormat ano = new SimpleDateFormat("yyyy");
         return "Modelo: " + modeloProduto + " / Sistema Operacional " + sistemaOperacional + " / Ano de Fabricação: "
-                + ano.format(anoFabricacao) + " / Polegadas: " + telaPol + " / Fabricante: " + fabricante + " / Fornecedor: "+ fornecedor.getNomeFornecedor() + " / Preço por dia: "
-                + precoPorDia + " / Status: " + statusAlugado + " / Acessorio: " + acessorios + " / Possui Camera: " + camera + " / Acesso à Rede: " + acessoRede;
+                + ano.format(anoFabricacao) + " / \nPolegadas: " + telaPol + " / Fabricante: " + fabricante + " / Fornecedor: "+ fornecedor.getNomeFornecedor() + " / Preço por dia: "
+                + precoPorDia + " / Status: " + statusAlugado + " / \nAcessorio: " + acessorios + " / Possui Camera: " + camera + " / Acesso à Rede: " + ((acessoRede == true) ? "Sim" : "Não")+"\n\n";
     }
 
     public void alterarDadosProduto(String modeloProduto, SO sistemaOperacional, Date anoFabricacao, double telaPol, String telaResolucao,

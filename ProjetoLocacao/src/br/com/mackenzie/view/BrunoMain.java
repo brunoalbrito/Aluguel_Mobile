@@ -26,9 +26,9 @@ public class BrunoMain {
         SimpleDateFormat formatador = new SimpleDateFormat("yyyy");
         String data = "2015";
 
-        Fornecedor f = new Fornecedor("Nokie", 0);
-
-        Smartphone p = new Smartphone("Moto G", SO.ANDROID, formatador.parse("2015"), 0, data, data, f, 0, StatusProduto.DISPONIVEL, data, 0, 'A', true);
-        System.out.println(p.toString());
+//        Fornecedor f = new Fornecedor("Nokie", 0);
+//
+//        Smartphone p = new Smartphone("Moto G", SO.ANDROID, formatador.parse("2015"), 0, data, data, f, 0, StatusProduto.DISPONIVEL, data, 0, 'A', true);
+//        System.out.println(p.toString());
     }
 }

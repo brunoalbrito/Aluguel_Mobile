@@ -204,7 +204,7 @@ public class Controle {
             boolean dual = (entradaNumerica.nextInt() == 1);
             System.out.println("Sistema Operacional "
                     + "\n 1 - ANDROID"
-                    + "\n 2 - APPLE"
+                    + "\n 2 - IOS"
                     + "\n 3 - WINDOWS PHONE "
                     + "\n 4 - NAO INFORMADO");
             int choose = entradaNumerica.nextInt();
@@ -215,7 +215,7 @@ public class Controle {
                     sistemaO = SO.ANDROID;
                     break;
                 case 2:
-                    sistemaO = SO.APPLE;
+                    sistemaO = SO.IOS;
                     break;
                 case 3:
                     sistemaO = SO.WINDOWS_PHONE;
@@ -237,7 +237,7 @@ public class Controle {
             boolean conexao = (entradaNumerica.nextInt() == 1);
             System.out.println("Sistema Operacional "
                     + "\n1 - ANDROID"
-                    + "\n2 - APPLE"
+                    + "\n2 - IOS"
                     + "\n3 - WINDOWS PHONE "
                     + "\n4 - NAO INFORMADO");
             int choose = entradaNumerica.nextInt();
@@ -248,7 +248,7 @@ public class Controle {
                     sistemaO = SO.ANDROID;
                     break;
                 case 2:
-                    sistemaO = SO.APPLE;
+                    sistemaO = SO.IOS;
                     break;
                 case 3:
                     sistemaO = SO.WINDOWS_PHONE;
@@ -269,8 +269,8 @@ public class Controle {
         //Mostra todos os produtos disponíveis
         System.out.println("Todos os produtos disponiveis");
         for (Produto p : produtos) {
-            if (p.getStatusAlugado() == StatusProduto.DISPONIVEL) {
-                p.visualizarProdutos();
+            if (p.getStatusAlugado() == StatusProduto.DISPONIVEL){ 
+                System.out.println(p.visualizarProdutos());
             }
         }
     }
@@ -287,7 +287,7 @@ public class Controle {
                 String modeloProduto = entradaString.nextLine();
                 System.out.println("Sistema Operacional "
                         + "\n1 - ANDROID"
-                        + "\n2 - APPLE"
+                        + "\n2 - IOS"
                         + "\n3 - WINDOWS PHONE "
                         + "\n4 - NAO INFORMADO");
                 int choose = entradaNumerica.nextInt();
@@ -297,7 +297,7 @@ public class Controle {
                         sistemaO = SO.ANDROID;
                         break;
                     case 2:
-                        sistemaO = SO.APPLE;
+                        sistemaO = SO.IOS;
                         break;
                     case 3:
                         sistemaO = SO.WINDOWS_PHONE;
@@ -336,7 +336,7 @@ public class Controle {
                 String modeloProduto = entradaString.nextLine();
                 System.out.println("Sistema Operacional "
                         + "\n1 - ANDROID"
-                        + "\n2 - APPLE"
+                        + "\n2 - IOS"
                         + "\n3 - WINDOWS PHONE "
                         + "\n4 - NAO INFORMADO");
                 int choose = entradaNumerica.nextInt();
@@ -346,7 +346,7 @@ public class Controle {
                         sistemaO = SO.ANDROID;
                         break;
                     case 2:
-                        sistemaO = SO.APPLE;
+                        sistemaO = SO.IOS;
                         break;
                     case 3:
                         sistemaO = SO.WINDOWS_PHONE;
@@ -383,14 +383,8 @@ public class Controle {
                 }
 
                 System.out.println("Possui Acesso à Rede: 1- Sim 2-Não");
-                int redeP = entradaNumerica.nextInt();
-                boolean rede = false;
-                if (redeP == 1) {
-                    rede = true;
-                }
-                if (redeP == 2) {
-                    rede = false;
-                }
+                boolean rede = (entradaNumerica.nextInt() == 1) ;
+                
 
                 ((Tablet) p).alterarDadosProduto(modeloProduto, sistemaO, formatador.parse(data), pol, telaResolucao, fabricante, f, preco, StatusProduto.ALUGADO, acess, camera, rede);
             }

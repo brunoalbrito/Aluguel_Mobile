@@ -19,15 +19,21 @@ public class Smartphone extends Produto {
 
     @Override
     public String visualizarProdutos() {
-        SimpleDateFormat ano = new SimpleDateFormat("yyyy");
-        return "Modelo: " + modeloProduto + " Sistema Operacional " + sistemaOperacional + " Ano de Fabricação: "
-                + ano.format(anoFabricacao) + " Polegadas: " + telaPol + " Fabricante: " + fabricante + "Fornecedor: " + fornecedor.getNomeFornecedor() +" Preço por dia: "
-                + precoPorDia + " Status: " + statusAlugado + " Acessorio: " + acessorios + ""
-                + "Resolução da Camera: " + cameraResolucao + " Tipo de Conexão+ " + tipoRede + " DualChip: " + dualChip;
+        String texto = null;
+        try {
+            SimpleDateFormat ano = new SimpleDateFormat("yyyy");
+            texto = "Modelo: " + modeloProduto + " / Sistema Operacional: " + sistemaOperacional + " / Ano de Fabricação: "
+                    + ano.format(anoFabricacao) + " / Polegadas: " + telaPol + " \nFabricante: " + fabricante + " / Fornecedor: " + fornecedor.getNomeFornecedor() + " / Preço por dia: "
+                    + precoPorDia + " / Status: " + statusAlugado + " \nAcessorio: " + acessorios + ""
+                    + " / Resolução da Camera: " + cameraResolucao + " / Tipo de Conexão: " + tipoRede + "G" + " / DualChip: " + ((dualChip == true) ? "Sim" : "Não") + "\n\n";
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return texto;
     }
 
     public void alterarDadosProduto(String modeloProduto, SO sistemaOperacional, Date anoFabricacao, double telaPol, String telaResolucao,
-            String fabricante,Fornecedor fornecedor, double precoPorDia, StatusProduto statusAlugado, String acessorios, double cameraResolucao, char tipoRede, boolean dualChip) {
+            String fabricante, Fornecedor fornecedor, double precoPorDia, StatusProduto statusAlugado, String acessorios, double cameraResolucao, char tipoRede, boolean dualChip) {
         super.modeloProduto = modeloProduto;
         this.sistemaOperacional = sistemaOperacional;
         this.anoFabricacao = anoFabricacao;
@@ -54,6 +60,5 @@ public class Smartphone extends Produto {
     public boolean isDualChip() {
         return dualChip;
     }
-   
-    
+
 }

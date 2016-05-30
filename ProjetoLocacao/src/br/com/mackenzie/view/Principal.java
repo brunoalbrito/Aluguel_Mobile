@@ -44,7 +44,8 @@ public class Principal {
                         System.out.println("\n 1 - Cadastrar Fornecedor"
                                 + "\n 2 - Consultar Fornecedores cadastrados"
                                 + "\n 3 - Alterar dados de um fornecedor"
-                                + "\n 4 - Deletar fornecedor");
+                                + "\n 4 - Deletar fornecedor"
+                                + "\n 9 - Voltar pro menu principal");
                         opForn = in.nextInt();
 
                         switch (opForn) {

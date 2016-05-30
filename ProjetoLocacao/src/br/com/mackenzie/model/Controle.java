@@ -56,10 +56,10 @@ public class Controle {
         locacoes = new ArrayList();
 
         //Lendo arquivos Txt que possuem elementos do sistema já salvos
-//        inicializarClientes("clientes.txt");
-//        inicializarFornecedores("fornecedores.txt");
-//        inicializarProdutos("produtos.txt");
-//        inicializarLocacoes("locacoes.txt");
+        inicializarClientes("clientes.txt");
+        inicializarFornecedores("fornecedores.txt");
+        inicializarProdutos("produtos.txt");
+        inicializarLocacoes("locacoes.txt");
     }
 
     //Métodos para a classe Cliente
@@ -179,7 +179,7 @@ public class Controle {
         System.out.println("Modelo do produto: ");
         String modeloProduto = entradaString.nextLine();
         System.out.println("Ano de fabricação (aaaa)");
-        String data = entradaString.nextLine();
+        int data = entradaNumerica.nextInt();
         System.out.println("Polegadas na tela: ");
         double pol = entradaNumerica.nextDouble();
         System.out.println("Resolução da tela (ppi):");
@@ -225,7 +225,7 @@ public class Controle {
                     break;
             }
 
-            Smartphone s = new Smartphone(modeloProduto, sistemaO, formatador.parse(data), pol, telaResolucao, fabricante, f, preco, StatusProduto.DISPONIVEL, acess, resolu, rede, dual);
+            Smartphone s = new Smartphone(modeloProduto, sistemaO, data, pol, telaResolucao, fabricante, f, preco, StatusProduto.DISPONIVEL, acess, resolu, rede, dual);
 
             produtos.add(s);
         }
@@ -258,7 +258,7 @@ public class Controle {
                     break;
             }
 
-            Tablet t = new Tablet(modeloProduto, sistemaO, formatador.parse(data), pol, telaResolucao, fabricante, f, preco, StatusProduto.DISPONIVEL, acess, camera, conexao);
+            Tablet t = new Tablet(modeloProduto, sistemaO, data, pol, telaResolucao, fabricante, f, preco, StatusProduto.DISPONIVEL, acess, camera, conexao);
 
             produtos.add(t);
         }
@@ -269,7 +269,7 @@ public class Controle {
         //Mostra todos os produtos disponíveis
         System.out.println("Todos os produtos disponiveis");
         for (Produto p : produtos) {
-            if (p.getStatusAlugado() == StatusProduto.DISPONIVEL){ 
+            if (p.getStatusAlugado() == StatusProduto.DISPONIVEL) {
                 System.out.println(p.visualizarProdutos());
             }
         }
@@ -308,7 +308,7 @@ public class Controle {
                 }
                 SimpleDateFormat formatador = new SimpleDateFormat("yyyy");
                 System.out.println("Ano de fabricação (aaaa)");
-                String data = entradaString.nextLine();
+                int data = entradaNumerica.nextInt();
                 System.out.println("Polegadas na tela: ");
                 double pol = entradaNumerica.nextDouble();
                 System.out.println("Resolução da tela (ppi):");
@@ -328,7 +328,7 @@ public class Controle {
                 char rede = entradaString.nextLine().charAt(0);
                 System.out.println("Dual chip 1 - Sim / 2 - Não");
                 boolean dual = (entradaNumerica.nextInt() == 1);
-                ((Smartphone) p).alterarDadosProduto(modeloProduto, sistemaO, formatador.parse(data), pol, telaResolucao, fabricante, f, preco, StatusProduto.DISPONIVEL, acess, resolu, rede, dual);
+                ((Smartphone) p).alterarDadosProduto(modeloProduto, sistemaO, data, pol, telaResolucao, fabricante, f, preco, StatusProduto.DISPONIVEL, acess, resolu, rede, dual);
 
             }
             if (p instanceof Tablet) {
@@ -357,7 +357,7 @@ public class Controle {
                 }
                 SimpleDateFormat formatador = new SimpleDateFormat("yyyy");
                 System.out.println("Ano de fabricação (aaaa)");
-                String data = entradaString.nextLine();
+                int data = entradaNumerica.nextInt();
                 System.out.println("Polegadas na tela: ");
                 double pol = entradaNumerica.nextDouble();
                 System.out.println("Resolução da tela (ppi):");
@@ -383,10 +383,9 @@ public class Controle {
                 }
 
                 System.out.println("Possui Acesso à Rede: 1- Sim 2-Não");
-                boolean rede = (entradaNumerica.nextInt() == 1) ;
-                
+                boolean rede = (entradaNumerica.nextInt() == 1);
 
-                ((Tablet) p).alterarDadosProduto(modeloProduto, sistemaO, formatador.parse(data), pol, telaResolucao, fabricante, f, preco, StatusProduto.ALUGADO, acess, camera, rede);
+                ((Tablet) p).alterarDadosProduto(modeloProduto, sistemaO, data, pol, telaResolucao, fabricante, f, preco, StatusProduto.ALUGADO, acess, camera, rede);
             }
 
         } else {
@@ -530,11 +529,11 @@ public class Controle {
 
         System.out.println("Selecione produto por modelo:");
         p = selecionarProduto(entradaString.nextLine());
-        
+
         if ((c != null) && (p != null)) {
             Locacao l = new Locacao(c, p, dataRetirada, dataPrevista);
             locacoes.add(l);
-        }else{
+        } else {
             System.out.println("Produto ou Cliente inexistentes, por favor, verifique o cadastro dos mesmos!");
         }
 
@@ -555,7 +554,7 @@ public class Controle {
     public void gerarRelatorio() {
         //percorre o locacao mostrando os dados de cada uma
         for (Locacao l : locacoes) {
-            System.out.println(l.toString()); 
+            System.out.println(l.toString());
         }
 
     }
@@ -578,34 +577,75 @@ public class Controle {
         }
     }
 
-    private void inicializarProdutos(String file) {
+    private void inicializarFornecedores(String file) {
 
         try {
             BufferedReader in = new BufferedReader(new FileReader(file));
-
+            String linha;
+            while((linha = in.readLine()) != null){
+                fornecedores.add(new Fornecedor(linha.split(":")[0],Integer.parseInt(linha.split(":")[1]),Integer.parseInt(linha.split(":")[2])));
+            }
+            in.close();
         } catch (IOException | NumberFormatException e) {
             System.exit(-1);
         }
 
     }
 
-    private void inicializarFornecedores(String file) {
+    private void inicializarProdutos(String file) {
 
         try {
             BufferedReader in = new BufferedReader(new FileReader(file));
+            String linha;
+            while ((linha = in.readLine()) != null) {
+                String[] infos = linha.split(":");
+                String modeloProduto = infos[0];
+                SO so = SO.valueOf(infos[1]);
+                int anoFabricacao = Integer.parseInt(infos[2]);
+                double telaPol = Double.parseDouble(infos[3]);
+                String telaResolucao = infos[4];
+                String fabricante = infos[5];
+                Fornecedor fornecedor = selecionarFornecedor(Integer.parseInt(infos[6]));
+                double precoPorDia = Double.parseDouble(infos[7]);
+                StatusProduto statusProduto = StatusProduto.valueOf(infos[8]);
+                String acessorio = infos[9];
 
-        } catch (IOException | NumberFormatException e) {
+                if (infos.equals("T")) {
+                    boolean camera = (infos[10].equals("true"))?true:false;
+                    boolean acessoRede = (infos[11].endsWith("true"))?true:false;
+                    produtos.add(new Tablet(modeloProduto, so, anoFabricacao, telaPol, telaResolucao, fabricante, fornecedor, precoPorDia, statusProduto, acessorio, camera, acessoRede));
+                } else {
+                    double cameraResolucao = Double.parseDouble(infos[10]);
+                    char tipoRede = infos[11].charAt(0);
+                    boolean dualChip = Boolean.parseBoolean(infos[12]);
+                    produtos.add(new Smartphone(modeloProduto, so, anoFabricacao, telaPol, telaResolucao, fabricante, fornecedor, precoPorDia, statusProduto, acessorio, cameraResolucao, tipoRede, dualChip));
+                }
+            }
+
+        } catch (Exception e) {
             System.exit(-1);
         }
 
     }
 
     private void inicializarLocacoes(String file) {
-
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
         try {
             BufferedReader in = new BufferedReader(new FileReader(file));
-
-        } catch (IOException | NumberFormatException e) {
+            String line;
+            while((line = in.readLine()) != null){
+                String[] infos = line.split(":");
+                Date dataRetirada = (infos[0].equals("null"))?null:format.parse(infos[0]);
+                Date dataPrevista = (infos[1].equals("null"))?null:format.parse(infos[1]);
+                Date dataDevolucao = (infos[2].equals("null"))?null:format.parse(infos[2]);
+                double precoTotal = Double.parseDouble(infos[3]);
+                double valorMulta = Double.parseDouble(infos[4]);
+                Cliente cliente = consultaCliente(Integer.parseInt(infos[5]));
+                Produto produto = selecionarProduto(infos[6]);
+                int id = Integer.parseInt(infos[7]);
+                locacoes.add(new Locacao(cliente, produto, dataRetirada, dataPrevista, id));
+            }
+        } catch (Exception e) {
             System.exit(-1);
         }
 
@@ -634,55 +674,12 @@ public class Controle {
             System.exit(-1);
         }
     }
-
-    public void dumpProdutos() {
-
-        try {
-            BufferedWriter out = new BufferedWriter(new FileWriter("produtos.txt"));
-            for (Produto produto : produtos) {
-                if (produto instanceof Tablet) {
-                    out.write("T:" + produto.getModeloProduto()
-                            + ":" + produto.getSistemaOperacional()
-                            + ":" + produto.getAnoFabricacao()
-                            + ":" + produto.getTelaPol()
-                            + ":" + produto.getTelaResolucao()
-                            + ":" + produto.getFabricante()
-                            + ":" + produto.getFornecedor().getCod()
-                            + ":" + produto.getPrecoPorDia()
-                            + ":" + produto.getStatusAlugado()
-                            + ":" + produto.getAcessorios()
-                            + ":" + ((Tablet) produto).isCamera()
-                            + ":" + ((Tablet) produto).isAcessoRede()
-                            + System.lineSeparator());
-                } else {
-                    out.write("S:" + produto.getModeloProduto()
-                            + ":" + produto.getSistemaOperacional()
-                            + ":" + produto.getAnoFabricacao()
-                            + ":" + produto.getTelaPol()
-                            + ":" + produto.getTelaResolucao()
-                            + ":" + produto.getFabricante()
-                            + ":" + produto.getFornecedor().getCod()
-                            + ":" + produto.getPrecoPorDia()
-                            + ":" + produto.getStatusAlugado()
-                            + ":" + produto.getAcessorios()
-                            + ":" + ((Smartphone) produto).getCameraResolucao()
-                            + ":" + ((Smartphone) produto).getTipoRede()
-                            + ":" + ((Smartphone) produto).isDualChip()
-                            + System.lineSeparator());
-                }
-            }
-            out.flush();
-            out.close();
-        } catch (Exception e) {
-            System.exit(-1);
-        }
-    }
-
+    
     public void dumpFornecedores() {
-         try {
+        try {
             BufferedWriter out = new BufferedWriter(new FileWriter("fornecedores.txt"));
             for (Fornecedor f : fornecedores) {
-               out.write(f.getNomeFornecedor() + ":" + f.getTel() + ":" + f.getCod());
+                out.write(f.getNomeFornecedor() + ":" + f.getTel() + ":" + f.getCod());
             }
             out.flush();
             out.close();
@@ -692,20 +689,64 @@ public class Controle {
 
     }
 
-    public void dumpLocacoes() {
-//        private Date dataRetirada;
-//    private Date dataPrevista;
-//    private Date dataDevolucao;
-//    private double precoTotal;
-//    private double valorMulta;
-//    private Cliente cliente;
-//    private Produto produto;
-//    private int id;
-//    private static int idLast = 0;
+    public void dumpProdutos() {
+
         try {
-            BufferedWriter out = new BufferedWriter(new FileWriter("fornecedores.txt"));
+            BufferedWriter out = new BufferedWriter(new FileWriter("produtos.txt"));
+            for (Produto produto : produtos) {
+                StringBuffer linha = new StringBuffer();
+                linha.append(produto.getModeloProduto()
+                +":"+produto.getStatusAlugado()
+                +":"+produto.getAnoFabricacao()
+                +":"+produto.getTelaPol()
+                +":"+produto.getTelaResolucao()
+                +":"+produto.getFabricante()
+                +":"+produto.getFornecedor().getCod()
+                +":"+produto.getPrecoPorDia()
+                +":"+produto.getStatusAlugado()
+                +":"+produto.getAcessorios());
+                
+                if (produto instanceof Tablet) {
+                    linha.append(":"+((Tablet)produto).isCamera()
+                    +":"+((Tablet)produto).isAcessoRede());
+                } else {
+                    linha.append(":"+((Smartphone)produto).getCameraResolucao()
+                    +":"+((Smartphone)produto).getTipoRede()
+                    +":"+((Smartphone)produto).isDualChip());
+                }
+                out.write(linha.toString()+System.lineSeparator());
+            }
+            out.flush();
+            out.close();
+        } catch (Exception e) {
+            System.exit(-1);
+        }
+    }    
+
+    public void dumpLocacoes() {
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            BufferedWriter out = new BufferedWriter(new FileWriter("locacoes.txt"));
+            String dataRetirada, dataPrevista, dataDevolucao;
+            double precoTotal, valorMulta;
+            int codigo;
+
             for (Locacao l : locacoes) {
-               
+                dataRetirada = (l.getDataRetirada() == null) ? "null" : format.format(l.getDataRetirada());
+                dataPrevista = (l.getDataPrevista() == null) ? "null" : format.format(l.getDataPrevista());
+                dataDevolucao = (l.getDataDevolucao() == null) ? "null" : format.format(l.getDataDevolucao());
+                precoTotal = (l.getPrecoTotal() != 0) ? l.getPrecoTotal() : 0.0;
+                valorMulta = (l.getValorMulta() != 0) ? l.getValorMulta() : 0.0;
+                codigo = (l.getCliente() instanceof Fisico) ? ((Fisico) l.getCliente()).getCPF() : ((Juridico) l.getCliente()).getCNPJ();
+
+                out.write(dataRetirada
+                        + ":" + dataPrevista
+                        + ":" + dataDevolucao
+                        + ":" + precoTotal
+                        + ":" + valorMulta
+                        + ":" + codigo
+                        + ":" + l.getProduto().getModeloProduto()
+                        + ":" + l.getId());
             }
             out.flush();
             out.close();

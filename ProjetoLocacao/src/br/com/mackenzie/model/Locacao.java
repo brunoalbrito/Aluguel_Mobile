@@ -33,6 +33,18 @@ public class Locacao {
         this.id = idLast++;
         produto.alterarStatusProduto(StatusProduto.ALUGADO);
     }
+    
+    public Locacao(Cliente cliente, Produto produto, Date dataRetirada, Date dataPrevista, int id) {
+        //construtor nao inicializa data de devolução, pois essa é cadastrada na devolução
+        this.cliente = cliente;
+        this.produto = produto;
+        valorMulta = 10;
+        this.dataRetirada = dataRetirada;
+        this.dataPrevista = dataPrevista;
+        this.id = id;
+        this.idLast = id;
+        produto.alterarStatusProduto(StatusProduto.ALUGADO);
+    }
 
     public double calcularJuros() {
         //calculo de juros, pega a diferença de dias e multiplica pelo valor da multa

@@ -9,7 +9,7 @@ public class Smartphone extends Produto {
     private char tipoRede;
     private boolean dualChip;
 
-    public Smartphone(String modeloProduto, SO sistemaOperacional, Date anoFabricacao, double telaPol, String telaResolucao,
+    public Smartphone(String modeloProduto, SO sistemaOperacional, int anoFabricacao, double telaPol, String telaResolucao,
             String fabricante, Fornecedor fornecedor, double precoPorDia, StatusProduto statusProduto, String acessorios, double cameraResolucao, char tipoRede, boolean dualChip) {
         super(modeloProduto, sistemaOperacional, anoFabricacao, telaPol, telaResolucao, fabricante, fornecedor, precoPorDia, statusProduto, acessorios);
         this.cameraResolucao = cameraResolucao;
@@ -32,7 +32,7 @@ public class Smartphone extends Produto {
         return texto;
     }
 
-    public void alterarDadosProduto(String modeloProduto, SO sistemaOperacional, Date anoFabricacao, double telaPol, String telaResolucao,
+    public void alterarDadosProduto(String modeloProduto, SO sistemaOperacional, int anoFabricacao, double telaPol, String telaResolucao,
             String fabricante, Fornecedor fornecedor, double precoPorDia, StatusProduto statusAlugado, String acessorios, double cameraResolucao, char tipoRede, boolean dualChip) {
         super.modeloProduto = modeloProduto;
         this.sistemaOperacional = sistemaOperacional;

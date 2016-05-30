@@ -7,7 +7,7 @@ public abstract class Produto {
 
     protected String modeloProduto;
     protected SO sistemaOperacional;
-    protected Date anoFabricacao;
+    protected int anoFabricacao;
     protected double telaPol;
     protected String telaResolucao;
     protected String fabricante;
@@ -16,7 +16,7 @@ public abstract class Produto {
     protected StatusProduto statusAlugado;
     protected String acessorios;
 
-    public Produto(String modeloProduto, SO sistemaOperacional, Date anoFabricacao, double telaPol, String telaResolucao,
+    public Produto(String modeloProduto, SO sistemaOperacional, int anoFabricacao, double telaPol, String telaResolucao,
             String fabricante, Fornecedor fornecedor, double precoPorDia,StatusProduto statusProduto, String acessorios) {
         this.modeloProduto = modeloProduto;
         this.sistemaOperacional = sistemaOperacional;
@@ -42,7 +42,7 @@ public abstract class Produto {
 
 
 
-    public void alterarDadosProduto(String modeloProduto, SO sistemaOperacional, Date anoFabricacao, double telaPol, String telaResolucao,
+    public void alterarDadosProduto(String modeloProduto, SO sistemaOperacional, int anoFabricacao, double telaPol, String telaResolucao,
             String fabricante, double precoPorDia, boolean statusAlugado, String acessorios) {
         this.modeloProduto = modeloProduto;
         this.sistemaOperacional = SO.NAOINFORMADO;
@@ -70,7 +70,7 @@ public abstract class Produto {
         return sistemaOperacional;
     }
 
-    public Date getAnoFabricacao() {
+    public int getAnoFabricacao() {
         return anoFabricacao;
     }
 

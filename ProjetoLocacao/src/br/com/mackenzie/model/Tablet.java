@@ -9,7 +9,7 @@ public class Tablet extends Produto {
     private boolean camera;
     private boolean acessoRede;
 
-    public Tablet(String modeloProduto, SO sistemaOperacional, Date anoFabricacao, double telaPol, String telaResolucao,
+    public Tablet(String modeloProduto, SO sistemaOperacional, int anoFabricacao, double telaPol, String telaResolucao,
             String fabricante, Fornecedor fornecedor, double precoPorDia, StatusProduto statusProduto, String acessorios, boolean camera, boolean acessoRede) {
         super(modeloProduto, sistemaOperacional, anoFabricacao, telaPol, telaResolucao, fabricante, fornecedor, precoPorDia, statusProduto, acessorios);
         this.camera = camera;
@@ -34,7 +34,7 @@ public class Tablet extends Produto {
                 + precoPorDia + " / Status: " + statusAlugado + " / \nAcessorio: " + acessorios + " / Possui Camera: " + camera + " / Acesso à Rede: " + ((acessoRede == true) ? "Sim" : "Não")+"\n\n";
     }
 
-    public void alterarDadosProduto(String modeloProduto, SO sistemaOperacional, Date anoFabricacao, double telaPol, String telaResolucao,
+    public void alterarDadosProduto(String modeloProduto, SO sistemaOperacional, int anoFabricacao, double telaPol, String telaResolucao,
             String fabricante,Fornecedor fornecedor, double precoPorDia,StatusProduto statusProduto, String acessorios, boolean camera, boolean acessoRede) {
         this.modeloProduto = modeloProduto;
         this.sistemaOperacional = sistemaOperacional;

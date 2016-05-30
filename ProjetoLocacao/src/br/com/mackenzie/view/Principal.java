@@ -152,9 +152,9 @@ public class Principal {
 
                     break;
                 case 9:
-//                    c.dumpClientes();
-//                    c.dumpProdutos();
-//                    c.dumpFornecedores();
+                    c.dumpClientes();
+                    c.dumpFornecedores();
+                    c.dumpProdutos();
 //                    c.dumpLocacoes();
                     System.out.println("Finalizando programa!");
                     break;

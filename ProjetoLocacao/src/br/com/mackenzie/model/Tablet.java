@@ -35,18 +35,18 @@ public class Tablet extends Produto {
     }
 
     public void alterarDadosProduto(String modeloProduto, SO sistemaOperacional, Date anoFabricacao, double telaPol, String telaResolucao,
-            String fabricante, double precoPorDia, boolean statusAlugado, String acessorios, boolean camera, boolean acessoRede) {
+            String fabricante,Fornecedor fornecedor, double precoPorDia,StatusProduto statusProduto, String acessorios, boolean camera, boolean acessoRede) {
         this.modeloProduto = modeloProduto;
-        this.sistemaOperacional = SO.NAOINFORMADO;
+        this.sistemaOperacional = sistemaOperacional;
         this.anoFabricacao = anoFabricacao;
         this.telaPol = telaPol;
         this.telaResolucao = telaResolucao;
         this.fabricante = fabricante;
+        this.fornecedor = fornecedor;
         this.precoPorDia = precoPorDia;
-        this.statusAlugado = StatusProduto.DISPONIVEL;
+        this.statusAlugado = statusProduto;
         this.acessorios = acessorios;
         this.camera = camera;
         this.acessoRede = acessoRede;
-    }
-    
+    }    
 }

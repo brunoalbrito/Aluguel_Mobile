@@ -30,7 +30,8 @@ public abstract class Produto {
         this.acessorios = acessorios;
     }
 
-    public void alterarStatusProduto(boolean status) {
+    public void alterarStatusProduto(StatusProduto statusProduto) {
+        this.statusAlugado = statusProduto; 
     }
 
     public String visualizarProdutos() {

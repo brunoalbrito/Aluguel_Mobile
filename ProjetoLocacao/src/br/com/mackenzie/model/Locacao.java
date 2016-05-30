@@ -31,7 +31,7 @@ public class Locacao {
         this.dataRetirada = dataRetirada;
         this.dataPrevista = dataPrevista;
         this.id = idLast++;
-
+        produto.alterarStatusProduto(StatusProduto.ALUGADO);
     }
 
     public double calcularJuros() {
@@ -100,10 +100,15 @@ public class Locacao {
     @Override
     public String toString() {
         SimpleDateFormat s = new SimpleDateFormat("dd/MM/yyyy");
+        String data = (dataDevolucao == null)?"Produto não devolvido!":s.format(dataDevolucao);
 
-        return "ID: " + id + " / Cliente: " + cliente.toString() + "Produto: " + produto.getModeloProduto() + " / Data de Retirada: " + s.format(dataRetirada)
-                + " / Data Prevista de devolução: " + s.format(dataDevolucao)
-                + " / Preço total: " + precoTotal + " / Valor de multa: " + valorMulta + "Data de Devolução: " + s.format(dataDevolucao);
+        return "ID: " + id + " / Cliente: " + cliente.toString() 
+                + "Produto: " + produto.getModeloProduto() 
+                + " / Data de Retirada: " + s.format(dataRetirada)
+                + " / Data Prevista de devolução: " + s.format(dataPrevista)
+                + " / Preço total: " + precoTotal 
+                + " / Valor de multa: " + valorMulta 
+                + "Data de Devolução: " + data;
     }
 
 }

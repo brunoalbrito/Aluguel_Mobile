@@ -27,12 +27,13 @@ public class Smartphone extends Produto {
     }
 
     public void alterarDadosProduto(String modeloProduto, SO sistemaOperacional, Date anoFabricacao, double telaPol, String telaResolucao,
-            String fabricante, double precoPorDia, StatusProduto statusAlugado, String acessorios, double cameraResolucao, char tipoRede, boolean dualChip) {
+            String fabricante,Fornecedor fornecedor, double precoPorDia, StatusProduto statusAlugado, String acessorios, double cameraResolucao, char tipoRede, boolean dualChip) {
         super.modeloProduto = modeloProduto;
-        this.sistemaOperacional = SO.NAOINFORMADO;
+        this.sistemaOperacional = sistemaOperacional;
         this.anoFabricacao = anoFabricacao;
         this.telaPol = telaPol;
         this.telaResolucao = telaResolucao;
+        this.fabricante = fabricante;
         this.fabricante = fabricante;
         this.precoPorDia = precoPorDia;
         this.statusAlugado = statusAlugado;

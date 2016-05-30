@@ -28,7 +28,23 @@ public class Controle {
     private List<Produto> produtos;
     private List<Fornecedor> fornecedores;
     private List<Locacao> locacoes;
-    Scanner entrada = new Scanner(System.in);
+    private Scanner entrada = new Scanner(System.in);
+
+    public List<Cliente> getClientes() {
+        return clientes;
+    }
+
+    public List<Produto> getProdutos() {
+        return produtos;
+    }
+
+    public List<Fornecedor> getFornecedores() {
+        return fornecedores;
+    }
+
+    public List<Locacao> getLocacoes() {
+        return locacoes;
+    }
 
     public Controle() {
         //Inicializando lista com elementos do sistema
@@ -38,6 +54,10 @@ public class Controle {
         locacoes = new ArrayList();
 
         //Lendo arquivos Txt que possuem elementos do sistema já salvos
+        inicializarClientes("clientes.txt");
+        inicializarProdutos("produtos.txt");
+        inicializarFornecedores("fornecedores.txt");
+        inicializarLocacoes("locacoes.txt");
     }
 
     //Métodos para a classe Cliente

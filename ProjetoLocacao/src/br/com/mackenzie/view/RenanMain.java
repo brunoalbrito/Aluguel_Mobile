@@ -2,6 +2,8 @@ package br.com.mackenzie.view;
 
 import br.com.mackenzie.model.Cliente;
 import br.com.mackenzie.model.Controle;
+import br.com.mackenzie.model.Fisico;
+import br.com.mackenzie.model.Juridico;
 
 /**
  *
@@ -10,10 +12,7 @@ import br.com.mackenzie.model.Controle;
 public class RenanMain {
     public static void main(String[] args) {
         Controle controle = new Controle();
-        controle.cadastrarCliente();
         
-        controle.cadastrarCliente();
-        controle.cadastrarCliente();
         controle.cadastrarCliente();
         controle.cadastrarCliente();
         controle.cadastrarCliente();
@@ -23,7 +22,7 @@ public class RenanMain {
         
         controle = new Controle();
         for(Cliente cliente:controle.getClientes()){
-            cliente.toString();
+            System.out.println(cliente.toString());
         }
     }
 }

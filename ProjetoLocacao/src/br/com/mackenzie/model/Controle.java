@@ -28,7 +28,8 @@ public class Controle {
     private List<Produto> produtos;
     private List<Fornecedor> fornecedores;
     private List<Locacao> locacoes;
-    private Scanner entrada = new Scanner(System.in);
+    private Scanner entradaString = new Scanner(System.in);
+    private Scanner entradaNumerica = new Scanner(System.in);
 
     public List<Cliente> getClientes() {
         return clientes;
@@ -84,34 +85,39 @@ public class Controle {
 
         //Método para validar informações digitadas pelo funcionário da loja, validá-las e criar um novo Cliente
         System.out.println("Novo cliente 1 -Físico ou 2 - Jurídico?");
-        int opcao = entrada.nextInt();
+        int opcao = entradaNumerica.nextInt();
 
         if (opcao == 1) {
             System.out.println("Nome: ");
-            String nome = entrada.next();
+            String nome = entradaString.nextLine();
+            
             System.out.println("CPF: ");
-            int CPF = entrada.nextInt();
+            int CPF = entradaNumerica.nextInt();
+            
             System.out.println("Telefone: ");
-            int tel = entrada.nextInt();
+            int tel = entradaNumerica.nextInt();
+            
             System.out.println("Endereço: ");
-            String endereco = entrada.next();
+            String endereco = entradaString.nextLine();
+            
             Fisico f = new Fisico(nome, CPF, endereco, tel);
-
             clientes.add(f);
-
         }
         if (opcao == 2) {
 
             System.out.println("Nome Fantasia: ");
-            String nome = entrada.next();
+            String nome = entradaString.nextLine();
+            
             System.out.println("CNPJ: ");
-            int CNPJ = entrada.nextInt();
+            int CNPJ = entradaNumerica.nextInt();
+            
             System.out.println("Telefone: ");
-            int tel = entrada.nextInt();
+            int tel = entradaNumerica.nextInt();
+            
             System.out.println("Endereço: ");
-            String endereco = entrada.next();
+            String endereco = entradaString.nextLine();
+            
             Juridico j = new Juridico(nome, CNPJ, endereco, tel);
-
             clientes.add(j);
         }
 
@@ -122,7 +128,7 @@ public class Controle {
         //altera os dados dos clientes    
         System.out.println("Digite o CPF ou CNPJ");
 
-        int codigo = entrada.nextInt();
+        int codigo = entradaNumerica.nextInt();
 
         Cliente c = consultaCliente(codigo);
 
@@ -132,13 +138,13 @@ public class Controle {
                 Fisico f = ((Fisico) c);
                 System.out.println(f.toString());
                 System.out.println("Informe o novo nome");
-                String nomeCompleto = entrada.next();
+                String nomeCompleto = entradaString.next();
                 System.out.println("Informe o novo CPF");
-                int CPF = entrada.nextInt();
+                int CPF = entradaNumerica.nextInt();
                 System.out.println("Informe o novo Endereço");
-                String endereco = entrada.next();
+                String endereco = entradaString.next();
                 System.out.println("Informe o novo Telefone");
-                int telefone = entrada.nextInt();
+                int telefone = entradaNumerica.nextInt();
 
                 f.alterarDados(nomeCompleto, CPF, endereco, telefone);
             }
@@ -146,13 +152,13 @@ public class Controle {
                 Juridico j = ((Juridico) c);
                 System.out.println(j.toString());
                 System.out.println("Informe o novo Nome Fantasia");
-                String nomeFantasia = entrada.next();
+                String nomeFantasia = entradaString.next();
                 System.out.println("Informe o novo CPF");
-                int CNPJ = entrada.nextInt();
+                int CNPJ = entradaNumerica.nextInt();
                 System.out.println("Informe o novo CNPJ");
-                String endereco = entrada.next();
+                String endereco = entradaString.next();
                 System.out.println("Informe o novo Telefone");
-                int telefone = entrada.nextInt();
+                int telefone = entradaNumerica.nextInt();
                 j.alterarDados(nomeFantasia, CNPJ, endereco, telefone);
             }
 
@@ -167,40 +173,40 @@ public class Controle {
         SimpleDateFormat formatador = new SimpleDateFormat("yyyy");
         System.out.println("Criando um produto:"
                 + "\n Primeiramente selecione se seu produto é 1 - Smartphone ou 2 - Tablet");
-        int opc = entrada.nextInt();
+        int opc = entradaNumerica.nextInt();
 
         System.out.println("Modelo do produto: ");
-        String modeloProduto = entrada.next();
+        String modeloProduto = entradaString.next();
         System.out.println("Ano de fabricação (yyyy)");
-        String data = entrada.next();
+        String data = entradaString.next();
         System.out.println("Polegadas na tela: ");
-        double pol = entrada.nextDouble();
+        double pol = entradaNumerica.nextDouble();
         System.out.println("Resolução da tela (ppi):");
-        String telaResolucao = entrada.next();
+        String telaResolucao = entradaString.next();
         System.out.println("Fabricante: ");
-        String fabricante = entrada.next();
+        String fabricante = entradaString.next();
         System.out.println("Fornecedor cadastrado no sistema: ");
-        int codigoF = entrada.nextInt();
+        int codigoF = entradaNumerica.nextInt();
         Fornecedor f = selecionarFornecedor(codigoF);
         System.out.println("Preço por dia: ");
-        double preco = entrada.nextDouble();
+        double preco = entradaNumerica.nextDouble();
         System.out.println("Acessorios: ");
-        String acess = entrada.next();
+        String acess = entradaString.next();
 
         if (opc == 1) {
 
             System.out.println("Resolução da camera: ");
-            double resolu = entrada.nextDouble();
+            double resolu = entradaNumerica.nextDouble();
             System.out.println("Rede: 3 - 3G / 4 - 4G");
-            char rede = entrada.next().charAt(0);
+            char rede = entradaString.next().charAt(0);
             System.out.println("Dual chip 1 - Sim / 2 - Não");
-            boolean dual = (entrada.nextInt() == 1);
+            boolean dual = (entradaNumerica.nextInt() == 1);
             System.out.println("Sistema Operacional "
                     + "\n 1 - ANDROID"
                     + "\n 2 - APPLE"
                     + "\n 3 - WINDOWS PHONE "
                     + "\n 4 - NAO INFORMADO");
-            int choose = entrada.nextInt();
+            int choose = entradaNumerica.nextInt();
 
             SO sistemaO = null;
             switch (choose) {
@@ -225,15 +231,15 @@ public class Controle {
         if (opc == 2) {
 
             System.out.println("Tem camera? 1 - Sim / 2 - Não");
-            boolean camera = (entrada.nextInt() == 1);
+            boolean camera = (entradaNumerica.nextInt() == 1);
             System.out.println("Acessa a rede? 1 - Sim / 2 - Não");
-            boolean conexao = (entrada.nextInt() == 1);
+            boolean conexao = (entradaNumerica.nextInt() == 1);
             System.out.println("Sistema Operacional "
                     + "\n1 - ANDROID"
                     + "\n2 - APPLE"
                     + "\n3 - WINDOWS PHONE "
                     + "\n4 - NAO INFORMADO");
-            int choose = entrada.nextInt();
+            int choose = entradaNumerica.nextInt();
 
             SO sistemaO = null;
             switch (choose) {
@@ -270,7 +276,7 @@ public class Controle {
 
     public void alterarDadosProduto() {//////////////////////////////////////////////////////////////implementar porfavor
         System.out.println("Qual o modelo que você deseja alterar os dados?");
-        Produto p = selecionarProduto(entrada.next());
+        Produto p = selecionarProduto(entradaString.next());
         if (p != null) {
 
             System.out.println(p.visualizarProdutos());
@@ -291,12 +297,12 @@ public class Controle {
     public void excluirProduto() {
         //exclui da lista um determinado produto
         System.out.println("Qual produto voce deseja excluir?");
-        Produto p = selecionarProduto(entrada.next());
+        Produto p = selecionarProduto(entradaString.next());
         if (p != null) {
 
             System.out.println(p.visualizarProdutos());
             System.out.println("Deseja excluir esse? 1- sim / 2 - não");
-            if (entrada.nextInt() == 1) {
+            if (entradaNumerica.nextInt() == 1) {
 
                 produtos.remove(p);
 
@@ -323,9 +329,9 @@ public class Controle {
     public void acrescentarFornecedor() {
         //pede os dados de entrada e cria um fornecedor
         System.out.println("Nome do Fornecedor: ");
-        String nome = entrada.next();
+        String nome = entradaString.next();
         System.out.println("Telefone para contato: ");
-        int tel = entrada.nextInt();
+        int tel = entradaNumerica.nextInt();
 
         Fornecedor f = new Fornecedor(nome, tel);
         fornecedores.add(f);
@@ -336,7 +342,7 @@ public class Controle {
 
         //consulta por uma String e devolve todas as matches
         System.out.println("Qual o nome do fornecedor?");
-        String nome = entrada.next();
+        String nome = entradaString.next();
 
         System.out.println("Resultados para a sua busca:");
         for (Fornecedor f : fornecedores) {
@@ -351,15 +357,15 @@ public class Controle {
 
         //atualiza os dados de um fornecedor selecionado
         System.out.println("Qual o fornecedor?");
-        int selec = entrada.nextInt();
+        int selec = entradaNumerica.nextInt();
 
         if (selecionarFornecedor(selec) != null) {
             Fornecedor f = selecionarFornecedor(selec);
 
             System.out.println("Altere o nome ou reescreva-o:");
-            String novoNome = entrada.next();
+            String novoNome = entradaString.next();
             System.out.println("Altere o telefone ou reescreva-o:");
-            int novoTel = entrada.nextInt();
+            int novoTel = entradaNumerica.nextInt();
 
             f.setNomeFornecedor(novoNome);
             f.setTel(novoTel);
@@ -373,7 +379,7 @@ public class Controle {
 
         //exclui diretamente um fornecedor do array
         System.out.println("Qual o fornecedor?");
-        int selec = entrada.nextInt();
+        int selec = entradaNumerica.nextInt();
 
         if (selecionarFornecedor(selec) != null) {
             fornecedores.remove(selecionarFornecedor(selec));
@@ -414,16 +420,16 @@ public class Controle {
         System.out.println("Registrando nova locação");
 
         System.out.println("Data da retirada (dd/mm/aaaa) :");
-        Date dataRetirada = data.parse(entrada.next());
+        Date dataRetirada = data.parse(entradaString.next());
         System.out.println("Data prevista (dd/mm/aaaa) :");
-        Date dataPrevista = data.parse(entrada.next());
+        Date dataPrevista = data.parse(entradaString.next());
         do {
             System.out.println("Selecione Cliente por CPF ou CNPJ:");
-            c = consultaCliente(entrada.nextInt());
+            c = consultaCliente(entradaNumerica.nextInt());
         } while (c == null);
         do {
             System.out.println("Selecione produto por modelo:");
-            p = selecionarProduto(entrada.next());
+            p = selecionarProduto(entradaString.next());
         } while (p == null);
 
         Locacao l = new Locacao(c, p, dataRetirada, dataPrevista);
@@ -435,9 +441,9 @@ public class Controle {
         //termina uma locacao definindo data de termino e valor a ser pago
         SimpleDateFormat data = new SimpleDateFormat("dd/MM/yyyy");
         System.out.println("Selecione a locação pelo seu codigo para finaliza-la:");
-        Locacao l = selecionaLocacao(entrada.nextInt());
+        Locacao l = selecionaLocacao(entradaNumerica.nextInt());
         System.out.println("Data da devolução(dd/mm/yyyy):");
-        Date DataDevolucao = data.parse(entrada.next());
+        Date DataDevolucao = data.parse(entradaString.next());
         System.out.println("Valor a ser pago referente à finalização:"
                 + l.gerarValorPagar(DataDevolucao));
 
@@ -505,20 +511,22 @@ public class Controle {
     //Métodos para gravar os componentes criados no arquivo txt. Estes método serão chamados no fim da execução do sistema
     public void dumpClientes() {
         try {
-            BufferedWriter out = new BufferedWriter(new FileWriter("cliente.txt"));
+            BufferedWriter out = new BufferedWriter(new FileWriter("clientes.txt"));
             for (Cliente cliente : clientes) {
                 if (cliente instanceof Fisico) {
                     out.write("F:" + ((Fisico) cliente).getNomeCompleto() + 
                             ":" + ((Fisico) cliente).getCPF() + 
                             ":" + cliente.getEndereco() + 
-                            ":" + cliente.getTelefone());
+                            ":" + cliente.getTelefone()+System.lineSeparator());
                 } else {
-                    out.write("F:" + ((Juridico) cliente).getNomeFantasia()+ 
+                    out.write("J:" + ((Juridico) cliente).getNomeFantasia()+ 
                             ":" + ((Juridico) cliente).getCNPJ() + 
                             ":" + cliente.getEndereco() + 
-                            ":" + cliente.getTelefone());
+                            ":" + cliente.getTelefone()+System.lineSeparator());
                 }
             }
+            out.flush();
+            out.close();
         } catch (Exception ex) {
             System.exit(-1);
         }

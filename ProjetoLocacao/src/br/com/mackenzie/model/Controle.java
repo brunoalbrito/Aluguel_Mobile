@@ -781,8 +781,8 @@ public class Controle {
                 dataRetirada = (l.getDataRetirada() == null) ? "null" : format.format(l.getDataRetirada());
                 dataPrevista = (l.getDataPrevista() == null) ? "null" : format.format(l.getDataPrevista());
                 dataDevolucao = (l.getDataDevolucao() == null) ? "null" : format.format(l.getDataDevolucao());
-                precoTotal = (l.getPrecoTotal() != 0) ? l.getPrecoTotal() : 0.0;
-                valorMulta = (l.getValorMulta() != 0) ? l.getValorMulta() : 0.0;
+                precoTotal = (l.getPrecoTotal() != 0.0) ? l.getPrecoTotal() : 0.0;
+                valorMulta = (l.getValorMulta() != 0.0) ? l.getValorMulta() : 0.0;
                 codigo = (l.getCliente() instanceof Fisico) ? ((Fisico) l.getCliente()).getCPF() : ((Juridico) l.getCliente()).getCNPJ();
 
                 out.write(dataRetirada

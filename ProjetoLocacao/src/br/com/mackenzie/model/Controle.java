@@ -43,7 +43,7 @@ public class Controle {
         inicializarClientes("clientes.txt");
         inicializarFornecedores("fornecedores.txt");
         inicializarProdutos("produtos.txt");
-        //inicializarLocacoes("locacoes.txt");
+        inicializarLocacoes("locacoes.txt");
     }
 
     public List<Cliente> getClientes() {
@@ -114,14 +114,18 @@ public class Controle {
             System.out.println("CPF: ");
             long CPF = entradaNumerica.nextLong();
 
-            System.out.println("Telefone: ");
-            int tel = entradaNumerica.nextInt();
+            if (consultaCliente(CPF) == null) {
+                System.out.println("Telefone: ");
+                int tel = entradaNumerica.nextInt();
 
-            System.out.println("Endereço: ");
-            String endereco = entradaString.nextLine();
+                System.out.println("Endereço: ");
+                String endereco = entradaString.nextLine();
 
-            Fisico f = new Fisico(nome, CPF, endereco, tel);
-            clientes.add(f);
+                Fisico f = new Fisico(nome, CPF, endereco, tel);
+                clientes.add(f);
+            } else {
+                System.out.println("CPF já cadastrado!");
+            }
         }
         if (opcao == 2) {
 
@@ -131,14 +135,18 @@ public class Controle {
             System.out.println("CNPJ: ");
             long CNPJ = entradaNumerica.nextLong();
 
-            System.out.println("Telefone: ");
-            int tel = entradaNumerica.nextInt();
+            if (consultaCliente(CNPJ) == null) {
+                System.out.println("Telefone: ");
+                int tel = entradaNumerica.nextInt();
 
-            System.out.println("Endereço: ");
-            String endereco = entradaString.nextLine();
+                System.out.println("Endereço: ");
+                String endereco = entradaString.nextLine();
 
-            Juridico j = new Juridico(nome, CNPJ, endereco, tel);
-            clientes.add(j);
+                Juridico j = new Juridico(nome, CNPJ, endereco, tel);
+                clientes.add(j);
+            } else {
+                System.out.println("CNPJ já cadastrado!");
+            }
         }
 
     }
@@ -449,13 +457,16 @@ public class Controle {
         //pede os dados de entrada e cria um fornecedor
         System.out.println("Nome do Fornecedor: ");
         String nome = entradaString.nextLine();
-        System.out.println("Telefone para contato: ");
-        int tel = entradaNumerica.nextInt();
         System.out.println("CNPJ do Fornecedor: ");
         long cnpj = entradaNumerica.nextLong();
-
-        Fornecedor f = new Fornecedor(nome, tel, cnpj);
-        fornecedores.add(f);
+        if (selecionarFornecedor(cnpj) == null) {
+            System.out.println("Telefone para contato: ");
+            int tel = entradaNumerica.nextInt();
+            Fornecedor f = new Fornecedor(nome, tel, cnpj);
+            fornecedores.add(f);
+        }else{
+            System.out.println("CNPJ já cadastrado");
+        }
 
     }
 
@@ -583,6 +594,7 @@ public class Controle {
         //percorre o locacao mostrando os dados de cada uma
         for (Locacao l : locacoes) {
             System.out.println(l.toString());
+            System.out.println("---------------");
         }
 
     }

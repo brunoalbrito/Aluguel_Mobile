@@ -114,13 +114,11 @@ public class Locacao {
         SimpleDateFormat s = new SimpleDateFormat("dd/MM/yyyy");
         String data = (dataDevolucao == null)?"Produto não devolvido!":s.format(dataDevolucao);
 
-        return "ID: " + id + " / Cliente: " + cliente.toString() 
-                + "Produto: " + produto.getModeloProduto() 
-                + " / Data de Retirada: " + s.format(dataRetirada)
-                + " / Data Prevista de devolução: " + s.format(dataPrevista)
-                + " / Preço total: " + precoTotal 
-                + " / Valor de multa: " + valorMulta 
-                + "Data de Devolução: " + data;
+        return "ID: " + id 
+                + "\n / Cliente: " + cliente.toString() + " / Produto: " + produto.getModeloProduto() 
+                + "\n / Data de Retirada: " + s.format(dataRetirada)+ " / Data Prevista de devolução: " + s.format(dataPrevista)
+                + "\n / Preço total: " + precoTotal + " / Valor de multa: " + valorMulta 
+                + "\n / Data de Devolução: " + data;
     }
 
 }

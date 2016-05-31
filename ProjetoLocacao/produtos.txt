@@ -1,2 +1,2 @@
-S:Galaxy:ANDROID:2016:8.0:1024:Samsung:123:100.0:DISPONIVEL:Nenhum:30.0:4:false
-T:iPad:IOS:2015:4.0:324:Lalala:123:120.0:DISPONIVEL:Carregador:true:true
+S:Galaxy:ANDROID:2016:8.0:1024:Samsung:123456:100.0:DISPONIVEL:Nenhum:30.0:4:false
+T:iPad:IOS:2015:4.0:324:Lalala:123456:120.0:ALUGADO:Carregador:true:true
